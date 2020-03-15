@@ -1,0 +1,48 @@
+<div fxLayout="row" fxLayoutAlign="center center" fxFlexFill>
+  <mat-card class="mat-elevation-z6" id="login-card">
+      <h2>Login</h2>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="4px" style="font-size: 12px">
+      <div fxLayout="column" fxLayoutAlign="center stretch" style="font-size: 12px">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput type="text" placeholder="Email">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="text" placeholder="Password">
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="warn">Login</button>
+      <div fxLayout="row" fxLayoutAlign="space-between center">
+        <mat-checkbox>Remember me?</mat-checkbox>
+        <a href="#">Forgot your password?</a>
+      </div>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <div class="action-group"
+           fxLayout="column"
+           fxLayoutGap="1rem"
+           fxFlex="100%"
+           fxLayoutAlign="center center">
+        <h5>or</h5>
+        <button mat-raised-button class="custom-facebook">Continue with Facebook?</button>
+        <button mat-raised-button class="custom-gmail">Sign in with Gmail</button>
+      </div>
+    </mat-card-actions>
+    <mat-divider></mat-divider>
+<!--    <mat-card-actions>-->
+      <div class="sign-in-route" fxLayout="row" fxLayoutAlign="center center">
+        <div>New to CanFund? <span><a href="#">Sign in</a></span></div>
+      </div>
+<!--    </mat-card-actions>-->
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <div class="term-and-privacy">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam posuere vestibulum nibh at venenatis.
+        Curabitur eu augue sed purus feugiat tincidunt. Pellentesque sagittis ornare velit in accumsan
+        <span><a href="#">term and privacy</a></span>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -9,12 +9,12 @@ const routes: Routes = [
     path: '',
     component: CanFundComponent,
     children: [{
-      path: '',
+      path: 'app',
       pathMatch: 'full',
-      redirectTo: 'app'
+      redirectTo: ''
     },
     {
-      path: 'app',
+      path: '',
       component: HomeComponent
     },
     ]

@@ -4,13 +4,19 @@
 @include mat-core();
 
 $cf-primary: mat-palette($mat-custom-primary);
-$cf-accent: mat-palette($mat-custom-accent);
-$cf-warn: mat-palette($mat-custom-warn);
+$cf-accent: mat-palette($mat-blue-gray);
+$cf-warn: mat-palette($mat-red);
 $cf-theme: mat-light-theme($cf-primary, $cf-accent, $cf-warn);
 
 @include angular-material-theme($cf-theme);
 
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: mat-color($cf-primary);
+}
