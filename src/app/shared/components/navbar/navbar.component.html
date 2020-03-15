@@ -1,0 +1,31 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <button type="button" aria-label="Toggle Menu" mat-icon-button (click)="drawer.toggle()">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <span class="title-with-spacer">
+      {{ navbarTitle }}
+    </span>
+    <button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="User menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <span fxFlex></span>
+    <button mat-button>something</button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<mat-menu #userMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>account_box</mat-icon>
+    <span>Profile</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>insert_chart</mat-icon>
+    <span>Report</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>close</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

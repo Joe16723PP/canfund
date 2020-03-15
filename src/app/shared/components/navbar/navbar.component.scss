@@ -1,0 +1,14 @@
+@import "~@angular/material/theming";
+
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  @include mat-elevation(4);
+}

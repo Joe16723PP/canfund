@@ -1,0 +1,16 @@
+<mat-toolbar color="primary">
+  <!--  {{ sideBarTitle }}-->
+  <div class="sidebar-title" fxLayout="row" fxLayoutAlign="center center">
+    {{ sideBarTitle }}
+  </div>
+</mat-toolbar>
+
+<mat-nav-list class="sidebar-menu">
+  <ng-container *ngFor="let menuItem of menus">
+    <a *ngIf="menuItem.displayedName" [routerLink]="menuItem.path" mat-list-item routerLinkActive="active">
+      <mat-icon class="list-icon sidebar-list-icon" matListIcon>{{ menuItem.icon }}
+      </mat-icon>
+      {{ menuItem.displayedName }}
+    </a>
+  </ng-container>
+</mat-nav-list>

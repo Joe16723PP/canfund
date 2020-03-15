@@ -1,0 +1,20 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+    <app-sidebar [menus]="menus"></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content fxLayout="column">
+    <app-navbar [drawer]="drawer"></app-navbar>
+    <div class="container">
+<!--      <router-outlet></router-outlet>-->
+    </div>
+    <div *ngIf="loading" class="loader" fxLayout fxLayoutAlign="center center">
+      <mat-spinner></mat-spinner>
+    </div>
+    <ng-container *ngIf="!loading">
+      <!--      <router-outlet></router-outlet>-->
+      <span class="flex-spacer"></span>
+    </ng-container>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
