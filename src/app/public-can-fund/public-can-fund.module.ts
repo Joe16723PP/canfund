@@ -15,6 +15,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {PublicCanFundRoutingModule} from './public-can-fund-routing.module';
+import {AuthService} from '../core/services/authService/auth.service';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatIconModule} from '@angular/material/icon';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 
@@ -23,7 +29,8 @@ import {PublicCanFundRoutingModule} from './public-can-fund-routing.module';
     PublicCanFundComponent,
     LoginComponent,
     HomeComponent,
-    TagGroupComponent
+    TagGroupComponent,
+    SignUpComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +44,12 @@ import {PublicCanFundRoutingModule} from './public-can-fund-routing.module';
     MatFormFieldModule,
     MatInputModule,
     MatCheckboxModule,
-    PublicCanFundRoutingModule
-  ]
+    PublicCanFundRoutingModule,
+    AngularFireAuthModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    MatIconModule
+  ],
+  providers: [AuthService]
 })
 export class PublicCanFundModule { }

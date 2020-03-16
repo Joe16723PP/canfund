@@ -1,11 +1,31 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <button mat-button>Dashboard</button>
-    <button mat-button>Share Idea!</button>
-    <span fxFlex></span>
-    <h4>CanFund</h4>
-    <span fxFlex></span>
-    <a mat-stroked-button routerLink="/login">Login</a>
-    <button mat-button>Sign in</button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div class="custom-toolbar" fxLayout="row" fxLayoutAlign="start center">
+  <a mat-button routerLink="/">Icon CanFund</a>
+  &nbsp;
+  <button mat-button>Explore</button>
+  <button mat-button>Share Idea!</button>
+  <form [formGroup]="searchGroup"
+        (ngSubmit)="onSearch()"
+        class="custom-search"
+        fxFlex="20%"
+        fxLayout="row"
+        fxLayoutAlign="start center">
+    <button mat-icon-button type="submit">
+      <mat-icon>search</mat-icon>
+    </button>
+    <input type="text" fxFlex formControlName="keyword" placeholder="Search in CanFund">
+  </form>
+<!--  <div routerLink="/">-->
+<!--    CanFund-->
+<!--  </div>-->
+  <span fxFlex></span>
+  <div *ngIf="!isLoginUser; else login">
+    <a mat-stroked-button routerLink="/login">
+      <mat-icon>account_circle</mat-icon>
+      Login
+    </a>
+    <button mat-button>Sign up</button>
+  </div>
+  <ng-template #login>
+    <button mat-button>{{userData.displayName}}</button>
+  </ng-template>
+</div>

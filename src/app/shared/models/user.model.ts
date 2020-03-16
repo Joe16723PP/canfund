@@ -3,5 +3,5 @@ export interface UserModel {
   email: string;
   photoURL?: string;
   displayName?: string;
-  favoriteColor?: string;
+  emailVerified?: boolean;
 }

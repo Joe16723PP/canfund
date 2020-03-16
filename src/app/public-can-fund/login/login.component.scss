@@ -28,11 +28,11 @@ button {
 }
 
 .custom-facebook {
-  background-color: #3108b0;
+  background-color: #3b5998;
 }
 
 .custom-gmail {
-  background-color: #b02f1d;
+  background-color: #B23121;
 }
 
 #login-card {
@@ -49,11 +49,25 @@ button {
   color: #857f84;
 }
 
-.sign-in-route {
+.sign-up-route {
   padding: 1rem;
   font-size: 16px;
   color: #524d51;
   //font-weight: bold;
   //height: 70px;
   //background-color: #b02f1d;
+}
+
+.bg-img {
+  background-image: url(/assets/images/bgTest.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  //min-height: calc(100vh - 60px);
+  height: 100vh;
+  width: 100vw;
+}
+
+.login-container {
+  min-height: calc(100vh -  60px);
 }

@@ -18,6 +18,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {PublicCanFundModule} from './public-can-fund/public-can-fund.module';
+import {AngularFireAuthModule} from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {PublicCanFundModule} from './public-can-fund/public-can-fund.module';
       SharedModule,
       CoreModule,
       PublicCanFundModule,
+      AngularFireAuthModule,
       AngularFireModule.initializeApp(environment.firebaseConfig),
       MatCardModule,
       MatFormFieldModule,

@@ -1,15 +1,50 @@
 @import "~@angular/material/theming";
 
-:host {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-}
+//:host {
+//  //position: sticky;
+//  //top: 0;
+//  //z-index: 2;
+//}
+//
+//.mat-toolbar.mat-primary {
+//  //position: sticky;
+//  //top: 0;
+//  //z-index: 2;
+//  //@include mat-elevation(4);
+//  //color: white;
+//}
 
-.mat-toolbar.mat-primary {
+.custom-toolbar {
   position: sticky;
   top: 0;
   z-index: 2;
   @include mat-elevation(4);
+  background-color: transparent;
+  height: 60px;
+  width: 100vw;
   color: white;
+  font-size: 12px;
+}
+
+.custom-search {
+  height: 35px;
+  width: 180px;
+  border-radius: 3px;
+  background-color: white;
+  opacity: 0.9;
+}
+
+.custom-search > input {
+  border: none;
+  width: 100%;
+  background-color: transparent;
+  font-size: 14px;
+}
+
+.custom-search > input:focus {
+  outline: none;
+}
+
+.custom-search > button {
+  color: gray;
 }

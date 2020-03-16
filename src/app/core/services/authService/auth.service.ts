@@ -17,8 +17,8 @@ export class AuthService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  public get UserValue(): User {
-    return this.currentUserSubject.value;
+  public get UserValue(): UserModel {
+    return this.currentUserSubject.value as UserModel;
   }
 
   // not available now
@@ -29,7 +29,7 @@ export class AuthService {
         .signInWithPopup(provider)
         .then(user => {
           resolve(user);
-          // this.doManageUser(user);
+          // this.onManageUser(user);
         }, err => {
           console.log(err);
           reject(err);
@@ -45,6 +45,7 @@ export class AuthService {
       this.firebaseAuth.auth
         .signInWithPopup(provider)
         .then(user => {
+          this.onManageUser(user);
           resolve(user);
         }, err => {
           reject(err);
@@ -67,7 +68,7 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().signInWithEmailAndPassword(value.email, value.password)
         .then((user) => {
-          // this.doManageUser(user);
+          this.onManageUser(user);
           resolve(user);
         }, (err) => {
           reject(err);
@@ -75,6 +76,12 @@ export class AuthService {
     });
   }
 
+  onManageUser(user) {
+    localStorage.setItem('currentUser', JSON.stringify(user.user as UserModel));
+    this.currentUserSubject.next(user.user);
+    // store user details and jwt token in local storage to keep user logged in between page refreshes
+    // return result;
+  }
   onLogout() {
     firebase.auth().signOut().then(r => {}, err => {
       console.log(err);
