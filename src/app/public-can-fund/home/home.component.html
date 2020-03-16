@@ -1,10 +1,20 @@
-<!--<div fxLayout="column" fxLayoutAlign="center center" style="height: 80vh" fxLayoutGap="8rem">-->
-<!--  <app-tag-group></app-tag-group>-->
-<!--  <div fxLayout="column" fxLayoutGap="1rem" fxLayoutAlign="start center">-->
-<!--    <div class="text-title">"Neque porro quisquam est qui dolorem"</div>-->
-<!--    <div class="text-sub-title">"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."</div>-->
-<!--  </div>-->
-<!--</div>-->
-<div class="bg-img">
+<div class="bg-img" fxLayout="column">
   <app-navbar></app-navbar>
+
+  <div fxLayout="row">
+    <div class="displayed-container" fxLayout="column" fxLayoutGap="2rem" fxFlex="60">
+      <div class="text-header-web">
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      </div>
+      <div class="social-group" fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="start center">
+        <img class="social-icon" src="./assets/images/gamepad.png">
+        <img class="social-icon" src="./assets/images/chat-box.png">
+        <img class="social-icon" src="./assets/images/location.png">
+        <img class="social-icon" src="./assets/images/package.png">
+      </div>
+    </div>
+    <div fxLayout="row" fxFlex="40" style="background-color: transparent">
+      <app-login></app-login>
+    </div>
+  </div>
 </div>

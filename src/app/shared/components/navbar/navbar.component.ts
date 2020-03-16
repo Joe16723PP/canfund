@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
     if (this.userData) {
       this.isLoginUser = true;
     }
+    console.log(this.userData);
   }
 
   ngOnInit() {
@@ -33,5 +34,9 @@ export class NavbarComponent implements OnInit {
 
   onSearch() {
     console.log(this.searchGroup.value);
+  }
+
+  onLogout() {
+    this.authService.onLogout()
   }
 }

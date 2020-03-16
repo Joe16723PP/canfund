@@ -2,21 +2,6 @@
 @import "../../../../node_modules/@angular/material/theming";
 @include mat-core();
 
-//:host {
-//  //@include mat-elevation(4);
-//}
-:host {
-  background-color: #ff3553;
-}
-
-mat-toolbar {
-  position: sticky;
-  top: 0;
-  z-index: 2;
-  @include mat-elevation(4);
-}
-
-
 mat-card {
   width: 400px;
   height: auto;

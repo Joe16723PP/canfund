@@ -24,6 +24,8 @@
   width: 100vw;
   color: white;
   font-size: 12px;
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
 
 .custom-search {
@@ -47,4 +49,11 @@
 
 .custom-search > button {
   color: gray;
+}
+
+#profile-img {
+  margin: 6px;
+  border-radius: 50%;
+  max-width: 30px;
+  @include mat-elevation(3);
 }
