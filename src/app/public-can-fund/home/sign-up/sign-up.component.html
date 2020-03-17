@@ -1,0 +1,43 @@
+<div class="displayed-sign-up" fxLayout="row" fxLayoutAlign="center center">
+  <mat-card class="mat-elevation-z6">
+    <h2>Register</h2>
+    <mat-card-content fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="4px" style="font-size: 12px">
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+        <div fxLayout="column" fxLayoutAlign="center stretch" style="font-size: 12px">
+          <mat-form-field appearance="outline">
+            <mat-label>Enter your email</mat-label>
+            <mat-icon matPrefix>email</mat-icon>
+            <input matInput type="text" placeholder="Email">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <mat-icon matPrefix>lock</mat-icon>
+            <input matInput [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button (click)="hide = !hide" matSuffix color="accent">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Enter your display name</mat-label>
+            <mat-icon matPrefix>person</mat-icon>
+            <input matInput type="text" placeholder="your display name">
+          </mat-form-field>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <ngx-recaptcha2 formControlName="reCaptcha"
+                          type="image"
+                          [siteKey]="siteKey"
+                          useGlobalDomain="false"
+                          size="normal">
+          </ngx-recaptcha2>
+        </div>
+        <br>
+        <button mat-raised-button color="primary">Sign up</button>
+      </form>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions>
+      <app-term-privacy-detail></app-term-privacy-detail>
+    </mat-card-actions>
+  </mat-card>
+</div>

@@ -1,18 +1,18 @@
 @import "~@angular/material/theming";
 
-//:host {
-//  //position: sticky;
-//  //top: 0;
-//  //z-index: 2;
-//}
-//
-//.mat-toolbar.mat-primary {
-//  //position: sticky;
-//  //top: 0;
-//  //z-index: 2;
-//  //@include mat-elevation(4);
-//  //color: white;
-//}
+:host {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  @include mat-elevation(4);
+  opacity: 1;
+}
 
 .custom-toolbar {
   position: sticky;

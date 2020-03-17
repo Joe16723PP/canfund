@@ -11,7 +11,6 @@
   color: #e2dce2;
 }
 
-
 .displayed-container {
   width: 1000px;
   margin: 5rem 5rem 5rem 5rem;
@@ -44,4 +43,35 @@
   transform: scale(1.1);
   opacity: 0.8;
   transition: 0.5s;
+}
+
+mat-card {
+  width: 400px;
+  height: auto;
+  padding: 2rem;
+}
+
+button {
+  width: 100%;
+  color: white;
+}
+
+.custom-facebook {
+  background-color: #3b5998;
+}
+
+.custom-gmail {
+  background-color: #B23121;
+}
+
+
+.action-group {
+  padding: 0.5rem;
+}
+
+
+.sign-up-route {
+  padding: 1rem;
+  font-size: 16px;
+  color: #524d51;
 }

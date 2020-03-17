@@ -1,8 +1,9 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {PublicCanFundComponent} from './public-can-fund.component';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from './home/login/login.component';
 import {HomeComponent} from './home/home.component';
+import {SignUpComponent} from './home/sign-up/sign-up.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,14 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent
+      },
+      {
+        path: 'sign-up',
+        component: SignUpComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
       }
     ]
   }

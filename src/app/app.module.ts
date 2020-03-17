@@ -41,7 +41,7 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
       MatInputModule,
       MatDividerModule,
       MatButtonModule,
-      MatCheckboxModule
+      MatCheckboxModule,
     ],
   providers: [],
   bootstrap: [AppComponent]
