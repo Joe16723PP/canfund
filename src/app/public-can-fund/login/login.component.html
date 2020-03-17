@@ -14,29 +14,36 @@
       <div fxLayout="row" fxLayoutAlign="center center" class="login-container">
         <mat-card class="mat-elevation-z6" id="login-card">
           <h2>Login</h2>
-          <mat-card-content fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="4px" style="font-size: 12px">
+          <mat-card-content fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="6px" style="font-size: 12px">
             <form [formGroup]="loginGroup" (ngSubmit)="onSubmit()">
               <div fxLayout="column" fxLayoutAlign="center stretch" style="font-size: 12px">
                 <mat-form-field appearance="outline">
                   <mat-label>Enter your email</mat-label>
                   <mat-icon matPrefix>email</mat-icon>
-                  <input matInput type="text" placeholder="Email">
+                  <input matInput type="email" placeholder="Email" formControlName="email">
+                  <mat-error *ngIf="loginGroup.get('email').invalid && loginGroup.get('email').touched">
+                    Email is invalid!
+                  </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline">
                   <mat-label>Enter your password</mat-label>
                   <mat-icon matPrefix>lock</mat-icon>
-                  <input matInput [type]="hide ? 'password' : 'text'">
+                  <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Password must at least 8 characters">
                   <button mat-icon-button (click)="hide = !hide" matSuffix color="accent">
                     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                   </button>
+                  <mat-error *ngIf="loginGroup.get('password').invalid && loginGroup.get('password').touched">
+                    Please enter password and must be at least 8 characters
+                  </mat-error>
                 </mat-form-field>
               </div>
-              <button mat-raised-button color="primary">Login</button>
-              <div fxLayout="row" fxLayoutAlign="end center">
-                <!--            <mat-checkbox>Remember me?</mat-checkbox>-->
-                <a href="#">Forgot your password?</a>
-              </div>
+              <br>
+              <button mat-raised-button color="primary" type="submit" [disabled]="loginGroup.invalid">Login</button>
             </form>
+            <div fxLayout="row" fxLayoutAlign="end center">
+              <!--            <mat-checkbox>Remember me?</mat-checkbox>-->
+              <a href="#">Forgot your password?</a>
+            </div>
           </mat-card-content>
           <mat-divider></mat-divider>
           <mat-card-actions>

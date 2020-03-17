@@ -1,9 +1,9 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {PublicCanFundComponent} from './public-can-fund.component';
-import {LoginComponent} from './home/login/login.component';
+import {LoginComponent} from './login/login.component';
 import {HomeComponent} from './home/home.component';
-import {SignUpComponent} from './home/sign-up/sign-up.component';
+import {SignUpComponent} from './sign-up/sign-up.component';
 import {ShareIdeaComponent} from './share-idea/share-idea.component';
 
 const routes: Routes = [

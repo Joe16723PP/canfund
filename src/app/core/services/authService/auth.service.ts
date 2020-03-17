@@ -7,6 +7,8 @@ import {User} from 'firebase';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {UserManagementService} from '../user-management/user-management.service';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +17,10 @@ export class AuthService {
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  constructor(public firebaseAuth: AngularFireAuth, private http: HttpClient, public snackBar: MatSnackBar) {
+  constructor(public firebaseAuth: AngularFireAuth,
+              private http: HttpClient,
+              public snackBar: MatSnackBar,
+              public userService: UserManagementService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -60,7 +65,14 @@ export class AuthService {
       this.firebaseAuth.auth
         .signInWithPopup(provider)
         .then(user => {
-          this.onManageUser(user);
+          this.currentUserSubject.next(user.user);
+          const url = environment.apiUrl + '/user/' + user.user.uid;
+          this.http.get(url).subscribe(value => {
+            this.onManageUser(user);
+          }, error => {
+            this.writeUserToDatabase(user);
+            this.onManageUser(user);
+          });
           resolve(user);
         }, err => {
           reject(err);
@@ -94,6 +106,7 @@ export class AuthService {
   }
   // store user details and jwt token in local storage to keep user logged in between page refreshes
   onManageUser(user) {
+    console.log('on manage user');
     const localUser: UserModel = {
       displayName: user.user.displayName,
       email: user.user.email,
@@ -101,7 +114,6 @@ export class AuthService {
       photoURL: user.user.photoURL,
       uid: user.user.uid};
     localStorage.setItem('currentUser', JSON.stringify(localUser));
-    this.currentUserSubject.next(user);
     // return result;
   }
 

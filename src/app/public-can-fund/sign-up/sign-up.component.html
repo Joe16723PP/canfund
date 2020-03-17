@@ -7,20 +7,29 @@
           <mat-form-field appearance="outline">
             <mat-label>Enter your email</mat-label>
             <mat-icon matPrefix>email</mat-icon>
-            <input matInput type="text" placeholder="Email">
+            <input matInput type="text" placeholder="Email" formControlName="email">
+            <mat-error *ngIf="signUpForm.get('email').invalid && signUpForm.get('email').touched">
+              Email is invalid!
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Enter your password</mat-label>
             <mat-icon matPrefix>lock</mat-icon>
-            <input matInput [type]="hide ? 'password' : 'text'">
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
             <button mat-icon-button (click)="hide = !hide" matSuffix color="accent">
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="signUpForm.get('password').invalid && signUpForm.get('password').touched">
+              Please enter password and must be at least 8 characters
+            </mat-error>
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Enter your display name</mat-label>
             <mat-icon matPrefix>person</mat-icon>
-            <input matInput type="text" placeholder="your display name">
+            <input matInput type="text" placeholder="your display name" formControlName="displayName">
+            <mat-error *ngIf="signUpForm.get('displayName').invalid && signUpForm.get('displayName').touched">
+              Please enter display name and must be at least 6 characters
+            </mat-error>
           </mat-form-field>
         </div>
         <div fxLayout="row" fxLayoutAlign="center center">
@@ -32,7 +41,7 @@
           </ngx-recaptcha2>
         </div>
         <br>
-        <button mat-raised-button color="primary">Sign up</button>
+        <button mat-raised-button color="primary" [disabled]="signUpForm.invalid">Sign up</button>
       </form>
     </mat-card-content>
     <mat-divider></mat-divider>
