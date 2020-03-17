@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  apiUrl: 'https://us-central1-canfund-c7a3c.cloudfunctions.net/CaneFund/v1',
   firebaseConfig: {
     apiKey: 'AIzaSyCcFlQhozrmYFl59p08_ipO5t6jZYuGgB4',
     authDomain: 'canfund-c7a3c.firebaseapp.com',

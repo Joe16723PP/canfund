@@ -19,11 +19,10 @@ export class NavbarComponent implements OnInit {
   isLoginUser = false;
   userData: UserModel;
   constructor(public authService: AuthService) {
-    this.userData = this.authService.UserValue;
-    if (this.userData) {
+    if (this.authService.UserValue !== null) {
+      this.userData = this.authService.UserValue;
       this.isLoginUser = true;
     }
-    console.log(this.userData);
   }
 
   ngOnInit() {
@@ -37,6 +36,6 @@ export class NavbarComponent implements OnInit {
   }
 
   onLogout() {
-    this.authService.onLogout()
+    this.authService.onLogout();
   }
 }

@@ -1,8 +1,11 @@
 .bg-img {
+  min-height: calc(100vh - 63.99px);
+  min-width: calc(100vw - 63.99px);
+}
+
+.have-bg-img {
   background-image: url(/assets/images/bgTest.jpg);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: calc(100vh - 63.99px);
-  min-width: calc(100vw - 63.99px);
 }

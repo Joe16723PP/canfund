@@ -1,9 +1,12 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AngularFireAuth} from '@angular/fire/auth';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {UserModel} from '../../../shared/models/user.model';
 import * as firebase from 'firebase';
 import {User} from 'firebase';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../../../environments/environment';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +15,25 @@ export class AuthService {
 
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
-  constructor(public firebaseAuth: AngularFireAuth) {
+  constructor(public firebaseAuth: AngularFireAuth, private http: HttpClient, public snackBar: MatSnackBar) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get UserValue(): UserModel {
-    return this.currentUserSubject.value as UserModel;
+    if (this.currentUserSubject.value) {
+      return {
+        displayName: this.currentUserSubject.value.displayName,
+        email: this.currentUserSubject.value.email,
+        emailVerified: this.currentUserSubject.value.emailVerified,
+        uid: this.currentUserSubject.value.uid,
+        photoURL: this.currentUserSubject.value.photoURL
+      };
+    } else {
+      return null;
+    }
+
+    // return this.currentUserSubject.value;
   }
 
   // not available now
@@ -57,6 +72,8 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
         .then((user) => {
+          this.writeUserToDatabase(user);
+          this.onManageUser(user);
           resolve(user);
         }, (err) => {
           reject(err);
@@ -75,13 +92,20 @@ export class AuthService {
         });
     });
   }
-
+  // store user details and jwt token in local storage to keep user logged in between page refreshes
   onManageUser(user) {
-    localStorage.setItem('currentUser', JSON.stringify(user.user as UserModel));
-    this.currentUserSubject.next(user.user);
-    // store user details and jwt token in local storage to keep user logged in between page refreshes
+    const localUser: UserModel = {
+      displayName: user.user.displayName,
+      email: user.user.email,
+      emailVerified: user.user.emailVerified,
+      photoURL: user.user.photoURL,
+      uid: user.user.uid};
+    localStorage.setItem('currentUser', JSON.stringify(localUser));
+    this.currentUserSubject.next(user);
     // return result;
   }
+
+  // clear localStorage and subject
   onLogout() {
     firebase.auth().signOut().then(r => {}, err => {
       console.log(err);
@@ -89,5 +113,21 @@ export class AuthService {
     localStorage.clear();
     this.currentUserSubject.next(null);
     window.location.reload(true);
+  }
+
+  // create user to our database
+  private writeUserToDatabase(user: firebase.auth.UserCredential) {
+    const localUser: UserModel = {
+      displayName: user.user.displayName,
+      email: user.user.email,
+      emailVerified: user.user.emailVerified,
+      photoURL: user.user.photoURL,
+      uid: user.user.uid};
+    const url = environment.apiUrl + '/user';
+    this.http.post(url, localUser).subscribe(value => {
+      this.snackBar.open('write user to database', 'close', {duration: 3000});
+    }, error => {
+      this.snackBar.open(error.message, 'close', {duration: 3000});
+    });
   }
 }

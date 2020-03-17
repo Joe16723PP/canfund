@@ -4,6 +4,7 @@ import {PublicCanFundComponent} from './public-can-fund.component';
 import {LoginComponent} from './home/login/login.component';
 import {HomeComponent} from './home/home.component';
 import {SignUpComponent} from './home/sign-up/sign-up.component';
+import {ShareIdeaComponent} from './share-idea/share-idea.component';
 
 const routes: Routes = [
   {
@@ -25,6 +26,10 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginComponent
+      },
+      {
+        path: 'share',
+        component: ShareIdeaComponent
       }
     ]
   }

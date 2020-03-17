@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-public-can-fund',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./public-can-fund.component.scss']
 })
 export class PublicCanFundComponent implements OnInit {
+  isHaveBg = false;
 
-  constructor() { }
+  constructor(private router: Router) {
+  }
 
   ngOnInit(): void {
+    // if (this.router.url === '/home') {
+    //   this.isHaveBg = true;
+    // }
   }
 
 }

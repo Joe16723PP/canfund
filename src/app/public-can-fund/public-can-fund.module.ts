@@ -22,6 +22,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { SignUpComponent } from './home/sign-up/sign-up.component';
 import {NgxCaptchaModule} from 'ngx-captcha';
 import { TermPrivacyDetailComponent } from './home/term-privacy-detail/term-privacy-detail.component';
+import { ShareIdeaComponent } from './share-idea/share-idea.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -32,8 +34,10 @@ import { TermPrivacyDetailComponent } from './home/term-privacy-detail/term-priv
     HomeComponent,
     SignUpComponent,
     TermPrivacyDetailComponent,
+    ShareIdeaComponent,
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     RouterModule,
     SharedModule,
