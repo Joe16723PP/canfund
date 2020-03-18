@@ -1,7 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <a mat-button routerLink="/">Icon CanFund</a>
-    &nbsp;
     <button mat-button>Explore</button>
     <a mat-button routerLink="/share">Share Idea!</a>
     <form [formGroup]="searchGroup"
@@ -13,7 +12,7 @@
       <button mat-icon-button type="submit">
         <mat-icon>search</mat-icon>
       </button>
-      <input type="text" fxFlex formControlName="keyword" placeholder="Search in CanFund">
+      <input type="text" formControlName="keyword" placeholder="Search in CanFund">
     </form>
     <span fxFlex></span>
     <div *ngIf="!isLoginUser; else login">
@@ -71,8 +70,8 @@
     <mat-icon matBadge="8" matBadgePosition="above after" matBadgeColor="primary" matBadgeSize="small">favorite</mat-icon>
     <span>MyIdea</span>
   </button>
-  <button mat-menu-item>
+  <a mat-menu-item routerLink="/share">
     <mat-icon>add_circle</mat-icon>
     <span>Share new idea</span>
-  </button>
+  </a>
 </mat-menu>

@@ -24,6 +24,7 @@
     "@angular/platform-browser-dynamic": "~9.0.6",
     "@angular/router": "~9.0.6",
     "firebase": "^7.11.0",
+    "ng-circle-progress": "^1.5.1",
     "ngx-captcha": "^8.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",

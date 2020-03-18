@@ -1,0 +1,44 @@
+mat-card {
+  max-width: 360px;
+}
+
+.header-idea {
+  font-size: 20px;
+}
+
+.description-idea {
+  font-size: 12px;
+  color: gray;
+}
+
+.progress-detail {
+  padding-top: 12px;
+  font-size: 12px;
+  color: gray;
+}
+
+
+.cover-container {
+  //font-size: 12px;
+  .btn-action-group {
+    transform: scale(0.75);
+    position: absolute;
+    top: -18px;
+    right: -10px;
+    visibility: hidden;
+  }
+  &:hover {
+    .btn-action-group {
+      visibility: visible;
+    }
+  }
+}
+
+button:hover {
+  transition: 0.3s;
+  transform: scale(1.1);
+}
+
+.cover-container:hover {
+  filter: brightness(90%);
+}

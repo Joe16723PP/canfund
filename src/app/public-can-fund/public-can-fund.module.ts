@@ -24,6 +24,7 @@ import {NgxCaptchaModule} from 'ngx-captcha';
 import { TermPrivacyDetailComponent } from './term-privacy-detail/term-privacy-detail.component';
 import { ShareIdeaComponent } from './share-idea/share-idea.component';
 import {HttpClientModule} from '@angular/common/http';
+import {MatSelectModule} from '@angular/material/select';
 
 
 
@@ -36,26 +37,27 @@ import {HttpClientModule} from '@angular/common/http';
     TermPrivacyDetailComponent,
     ShareIdeaComponent,
   ],
-  imports: [
-    HttpClientModule,
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    CoreModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    PublicCanFundRoutingModule,
-    AngularFireAuthModule,
-    MatSnackBarModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    NgxCaptchaModule
-  ],
+    imports: [
+        HttpClientModule,
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        CoreModule,
+        FlexLayoutModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule,
+        PublicCanFundRoutingModule,
+        AngularFireAuthModule,
+        MatSnackBarModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        NgxCaptchaModule,
+        MatSelectModule
+    ],
   providers: [AuthService]
 })
 export class PublicCanFundModule { }

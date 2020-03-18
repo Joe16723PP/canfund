@@ -45,3 +45,23 @@
   opacity: 0.8;
   transition: 0.5s;
 }
+
+.container {
+  margin: 4rem 15rem;
+  .found-idea-text {
+    font-size: 28px;
+    color: gray;
+  }
+}
+
+.filter-container {
+  padding: 4rem 0;
+  //background-color: red;
+  .header-filter {
+    font-size: 30px;
+    color: gray;
+  }
+  .search-name {
+    width: 600px;
+  }
+}

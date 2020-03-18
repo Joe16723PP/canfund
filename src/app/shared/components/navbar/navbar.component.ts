@@ -14,7 +14,6 @@ export class NavbarComponent implements OnInit {
 
   @Input() drawer: MatDrawer;
   @ViewChild(MatMenuTrigger, {static: true}) trigger: MatMenuTrigger;
-  navbarTitle = 'CanFund';
   searchGroup: FormGroup;
   isLoginUser = false;
   userData: UserModel;

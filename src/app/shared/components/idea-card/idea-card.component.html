@@ -1,0 +1,65 @@
+<mat-card class="mat-elevation-z4" style="margin: 6px 0">
+  <div class="cover-container">
+    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" (click)="onClickCard()">
+    <div class="btn-action-group" fxLayout="column" fxLayoutGap="6px">
+      <button mat-mini-fab color="primary" class="mat-elevation-z4">
+        <mat-icon>favorite_border</mat-icon>
+      </button>
+      <button mat-mini-fab color="primary" class="mat-elevation-z4">
+        <mat-icon>thumb_up</mat-icon>
+      </button>
+      <button mat-mini-fab color="primary" class="mat-elevation-z4">
+        <mat-icon>thumb_down</mat-icon>
+      </button>
+    </div>
+  </div>
+  <mat-card-content>
+    <div fxLayout="column" fxLayoutGap="4px">
+      <div class="header-idea">
+        header
+      </div>
+      <div class="description-idea">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at lacus quis risus vestibulum pellentesque. Praesent id nibh ac sapien condimentum finibus.
+      </div>
+      <br>
+      <div class="owner-idea">
+        by. <span><a href="#">jirot joe</a></span>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+    <div fxLayout="row" fxFlex="100%" class="progress-detail">
+      <div fxLayout="column" fxFlex="50%">
+        <div>$20 now</div>
+        <div>$100 need</div>
+        <div>%20 funded</div>
+        <div>23 day to go</div>
+      </div>
+      <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center end">
+        <circle-progress
+          [percent]="85"
+          [radius]="40"
+          [startFromZero]="false"
+          [showSubtitle]="false"
+          [outerStrokeWidth]="6"
+          [innerStrokeWidth]="2"
+          [outerStrokeColor]="progressBarPrimaryColor"
+          [innerStrokeColor]="progressBarSecondaryColor"
+          [animation]="true"
+          [animationDuration]="300"
+        ></circle-progress>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2rem">
+      <a mat-button>hashtag link</a>
+      <a mat-button>
+        <mat-icon>location_on</mat-icon>
+        project location
+      </a>
+    </div>
+  </mat-card-actions>
+</mat-card>

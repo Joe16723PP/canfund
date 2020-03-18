@@ -16,6 +16,7 @@ export const environment = {
     measurementId: 'G-J6DTZZGDNQ'
   },
   recaptchaSiteKey: '6LfJ1-EUAAAAAI6FHKRaVPpj17DPQ9y9dLRTWb7e',
+  postManLink: 'https://www.getpostman.com/collections/211b8bf61349c0bbfd38'
 };
 
 /*
