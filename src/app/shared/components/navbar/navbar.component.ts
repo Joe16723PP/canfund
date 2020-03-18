@@ -19,8 +19,10 @@ export class NavbarComponent implements OnInit {
   isLoginUser = false;
   userData: UserModel;
   constructor(public authService: AuthService) {
+    // console.log(this.authService.UserValue);
     if (this.authService.UserValue !== null) {
       this.userData = this.authService.UserValue;
+      console.log(this.userData);
       this.isLoginUser = true;
     }
   }

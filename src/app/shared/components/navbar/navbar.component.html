@@ -26,7 +26,8 @@
     </div>
     <ng-template #login>
       <button mat-stroked-button [matMenuTriggerFor]="userMenu">
-        <img id="profile-img" [src]="userData.photoURL" [alt]="userData.displayName">
+        <mat-icon *ngIf="!userData.photoURL">account_circle</mat-icon>
+        <img id="profile-img" *ngIf="userData.photoURL" [src]="userData.photoURL" [alt]="userData.displayName">
         &nbsp;
         {{userData.displayName}}
       </button>
@@ -36,44 +37,6 @@
     </button>
   </mat-toolbar-row>
 </mat-toolbar>
-
-<!--<div class="custom-toolbar" fxLayout="row" fxLayoutAlign="start center">-->
-<!--  <a mat-button routerLink="/">Icon CanFund</a>-->
-<!--  &nbsp;-->
-<!--  <button mat-button>Explore</button>-->
-<!--  <button mat-button>Share Idea!</button>-->
-<!--  <form [formGroup]="searchGroup"-->
-<!--        (ngSubmit)="onSearch()"-->
-<!--        class="custom-search"-->
-<!--        fxFlex="20%"-->
-<!--        fxLayout="row"-->
-<!--        fxLayoutAlign="start center">-->
-<!--    <button mat-icon-button type="submit">-->
-<!--      <mat-icon>search</mat-icon>-->
-<!--    </button>-->
-<!--    <input type="text" fxFlex formControlName="keyword" placeholder="Search in CanFund">-->
-<!--  </form>-->
-<!--  <span fxFlex></span>-->
-<!--  <div *ngIf="!isLoginUser; else login">-->
-<!--    <a mat-raised-button-->
-<!--       color="primary"-->
-<!--       routerLink="/login">-->
-<!--      <mat-icon>account_circle</mat-icon>-->
-<!--      Login-->
-<!--    </a>-->
-<!--    <a mat-button routerLink="/sign-up">Sign up</a>-->
-<!--  </div>-->
-<!--  <ng-template #login>-->
-<!--    <button mat-stroked-button [matMenuTriggerFor]="userMenu">-->
-<!--      <img id="profile-img" [src]="userData.photoURL" [alt]="userData.displayName">-->
-<!--      &nbsp;-->
-<!--      {{userData.displayName}}-->
-<!--    </button>-->
-<!--    <button mat-icon-button>-->
-<!--      <mat-icon>help</mat-icon>-->
-<!--    </button>-->
-<!--  </ng-template>-->
-<!--</div>-->
 
 
 <mat-menu #userMenu="matMenu">

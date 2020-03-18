@@ -35,7 +35,7 @@ export class SignUpComponent implements OnInit {
         this.snackBar.open('Redirecting...', 'close', {duration: 3000});
         setTimeout(() => {
           window.location.replace('/');
-        }, 1000);
+        }, 2000);
     }).catch(reason => {
       this.errorMessage = reason.message;
       this.isError = true;

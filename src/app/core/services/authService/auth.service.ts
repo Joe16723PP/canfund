@@ -8,37 +8,37 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserManagementService} from '../user-management/user-management.service';
-import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private currentUserSubject: BehaviorSubject<User>;
-  public currentUser: Observable<User>;
+  private currentUserSubject: BehaviorSubject<UserModel>;
+  public currentUser: Observable<UserModel>;
   constructor(public firebaseAuth: AngularFireAuth,
               private http: HttpClient,
               public snackBar: MatSnackBar,
               public userService: UserManagementService) {
-    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUserSubject = new BehaviorSubject<UserModel>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
   public get UserValue(): UserModel {
-    if (this.currentUserSubject.value) {
-      return {
-        displayName: this.currentUserSubject.value.displayName,
-        email: this.currentUserSubject.value.email,
-        emailVerified: this.currentUserSubject.value.emailVerified,
-        uid: this.currentUserSubject.value.uid,
-        photoURL: this.currentUserSubject.value.photoURL
-      };
-    } else {
-      return null;
-    }
+    // console.log(this.currentUserSubject.value);
+    // if (this.currentUserSubject.value) {
+    // return {
+    //   displayName: this.currentUserSubject.value.displayName,
+    //   email: this.currentUserSubject.value.email,
+    //   emailVerified: this.currentUserSubject.value.emailVerified,
+    //   uid: this.currentUserSubject.value.uid,
+    //   photoURL: this.currentUserSubject.value.photoURL
+    // };
+    // } else {
+    //   return null;
+    // }
 
-    // return this.currentUserSubject.value;
+    return this.currentUserSubject.value;
   }
 
   // not available now
@@ -69,11 +69,15 @@ export class AuthService {
           const url = environment.apiUrl + '/user/' + user.user.uid;
           this.http.get(url).subscribe(value => {
             this.onManageUser(user);
+            resolve(user);
           }, error => {
-            this.writeUserToDatabase(user);
-            this.onManageUser(user);
+            this.writeUserToDatabase(user).then(value => {
+              this.onManageUser(user);
+              resolve(user);
+            }).catch(reason => {
+              reject(reason.message);
+            });
           });
-          resolve(user);
         }, err => {
           reject(err);
         });
@@ -84,9 +88,12 @@ export class AuthService {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
         .then((user) => {
-          this.writeUserToDatabase(user);
-          this.onManageUser(user);
-          resolve(user);
+          this.writeUserToDatabase(user, value).then(value1 => {
+            this.onManageUser(user);
+            resolve(user);
+          }).catch(reason => {
+            reject(reason.message);
+          });
         }, (err) => {
           reject(err);
         });
@@ -106,14 +113,18 @@ export class AuthService {
   }
   // store user details and jwt token in local storage to keep user logged in between page refreshes
   onManageUser(user) {
-    console.log('on manage user');
-    const localUser: UserModel = {
-      displayName: user.user.displayName,
-      email: user.user.email,
-      emailVerified: user.user.emailVerified,
-      photoURL: user.user.photoURL,
-      uid: user.user.uid};
-    localStorage.setItem('currentUser', JSON.stringify(localUser));
+    this.userService.getUserDetailFromDatabase(user.user.uid)
+      .subscribe((value) => {
+        // console.log(value.user);
+        localStorage.setItem('currentUser', JSON.stringify(value.user));
+    });
+    // const localUser: UserModel = {
+    //   displayName: user.user.displayName,
+    //   email: user.user.email,
+    //   emailVerified: user.user.emailVerified,
+    //   photoURL: user.user.photoURL,
+    //   uid: user.user.uid};
+    // localStorage.setItem('currentUser', JSON.stringify(localUser));
     // return result;
   }
 
@@ -128,18 +139,26 @@ export class AuthService {
   }
 
   // create user to our database
-  private writeUserToDatabase(user: firebase.auth.UserCredential) {
+  private writeUserToDatabase(user: firebase.auth.UserCredential, customUser?: UserModel) {
     const localUser: UserModel = {
       displayName: user.user.displayName,
       email: user.user.email,
       emailVerified: user.user.emailVerified,
       photoURL: user.user.photoURL,
       uid: user.user.uid};
+    if (customUser) {
+      localUser.displayName = customUser.displayName;
+    }
     const url = environment.apiUrl + '/user';
-    this.http.post(url, localUser).subscribe(value => {
-      this.snackBar.open('write user to database', 'close', {duration: 3000});
-    }, error => {
-      this.snackBar.open(error.message, 'close', {duration: 3000});
+
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.post(url, localUser).subscribe(value => {
+        resolve(true);
+        this.snackBar.open('write user to database', 'close', {duration: 3000});
+      }, error => {
+        reject(false);
+        this.snackBar.open(error.message, 'close', {duration: 3000});
+      });
     });
   }
 }
