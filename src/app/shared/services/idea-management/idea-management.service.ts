@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../../environments/environment';
 import {CreateIdeaModel, IdeaDetailModel} from '../../models/idea.model';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,25 +22,27 @@ export class IdeaManagementService {
     });
   }
 
-  onGetAllIdea() {
+  onGetAllIdea(): Observable<any> {
     const url = this.apiUrl + '/projects';
-    return new Promise((resolve, reject) => {
-      this.http.get(url).subscribe((value: {projects: IdeaDetailModel[]}) => {
-        resolve(value.projects);
-      }, error => {
-        reject(error);
-      });
-    });
+    return this.http.get(url);
+    // return new Promise((resolve, reject) => {
+    //   this.http.get(url).subscribe((value: {projects: IdeaDetailModel[]}) => {
+    //     resolve(value.projects);
+    //   }, error => {
+    //     reject(error);
+    //   });
+    // });
   }
 
-  onGetIdeaByTag(tagName: string) {
+  onGetIdeaByTag(tagName: string): Observable<any> {
     const url = this.apiUrl + '/projects/tags/' + tagName;
-    return new Promise((resolve, reject) => {
-      this.http.get(url).subscribe((value: {projects: IdeaDetailModel[]}) =>  {
-        resolve(value.projects);
-      }, error => {
-        reject(error);
-      });
-    });
+    return this.http.get(url);
+    // return new Observable(subscriber => {
+    //   this.http.get(url).subscribe((value: {projects: IdeaDetailModel[]}) =>  {
+    //     resolve(value.projects);
+    //   }, error => {
+    //     reject(error);
+    //   });
+    // });
   }
 }

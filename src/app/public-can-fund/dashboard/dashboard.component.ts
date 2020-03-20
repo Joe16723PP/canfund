@@ -26,12 +26,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.getAllIdea();
   }
 
-
   private getAllIdea() {
-    this.ideaService.onGetAllIdea().then((value: IdeaDetailModel[]) => {
-      this.allIdea = value;
-    }).catch(reason => {
-      console.log(reason);
+    this.ideaService.onGetAllIdea().subscribe((value: {projects: IdeaDetailModel[]}) => {
+      this.allIdea = value.projects;
+    }, error => {
+      console.log(error);
     });
   }
 

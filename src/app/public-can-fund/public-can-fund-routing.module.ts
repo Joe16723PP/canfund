@@ -6,6 +6,7 @@ import {SignUpComponent} from './sign-up/sign-up.component';
 import {ShareIdeaComponent} from './share-idea/share-idea.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {MockCreateIdeaComponent} from './mock-create-idea/mock-create-idea.component';
+import {ForTestComponent} from './for-test/for-test.component';
 
 const routes: Routes = [
   {
@@ -35,6 +36,10 @@ const routes: Routes = [
       {
         path: 'mock-add',
         component: MockCreateIdeaComponent
+      },
+      {
+        path: 'for-test',
+        component: ForTestComponent
       }
     ]
   }

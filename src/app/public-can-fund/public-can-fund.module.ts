@@ -31,6 +31,8 @@ import {MatStepperModule} from '@angular/material/stepper';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { IdeaGroupComponent } from './dashboard/idea-group/idea-group.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { ForTestComponent } from './for-test/for-test.component';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -44,6 +46,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     DashboardComponent,
     MockCreateIdeaComponent,
     IdeaGroupComponent,
+    ForTestComponent,
   ],
     imports: [
         HttpClientModule,
@@ -68,7 +71,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
         CKEditorModule,
         MatStepperModule,
         MatTooltipModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+        MatTabsModule
     ],
   providers: [AuthService]
 })
