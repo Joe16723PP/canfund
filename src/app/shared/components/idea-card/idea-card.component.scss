@@ -7,13 +7,18 @@ mat-card {
 }
 
 .description-idea {
-  //max-height: 100px;
-  //max-width: 50px;
   font-size: 12px;
   color: gray;
-  //text-overflow: ellipsis;
-  //overflow: hidden;
-  //white-space: nowrap;
+  //.more {
+  //  display: none;
+  //}
+  .read-more-btn {
+    color: #00a4d2;
+  }
+  .read-more-btn:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
 .progress-detail {
@@ -22,6 +27,15 @@ mat-card {
   color: gray;
 }
 
+.owner-idea {
+  .display-name {
+    color: #00a4d2;
+  }
+  .display-name:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
 
 .cover-container {
   //font-size: 12px;

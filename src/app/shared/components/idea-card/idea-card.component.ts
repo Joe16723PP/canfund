@@ -16,6 +16,10 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
   userData: UserModel;
   isLoading = true;
   ideaSubscription: Subscription;
+  ideaDescription: string;
+  readMoreIdeaDes: string;
+  isHaveMoreDescription = false;
+  isReadMore = false;
 
   progressBarPrimaryColor = IDEA_COLOR.successState.primary;
   progressBarSecondaryColor = IDEA_COLOR.successState.accent;
@@ -24,13 +28,20 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    // console.log(this.txt2.length);
+    if (this.ideaDetail.description.length < 124) {
+      this.ideaDescription = this.ideaDetail.description;
+      this.isHaveMoreDescription = false;
+    } else {
+      this.ideaDescription = this.ideaDetail.description.substr(0, 124);
+      this.readMoreIdeaDes = this.ideaDetail.description.substr(124);
+      this.isHaveMoreDescription = true;
+    }
     this.ideaSubscription = this.userService.getUserDetailFromDatabase(this.ideaDetail.owner_id).subscribe((value: {user: UserModel}) => {
       this.userData = value.user;
-      // console.log(this.userData);
       this.isLoading = false;
     }, error => {
       console.log(error);
-      // this.userData = null;
       this.isLoading = true;
     });
   }
@@ -41,5 +52,9 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.ideaSubscription.unsubscribe();
+  }
+
+  onClickReadMore() {
+    this.isReadMore = !this.isReadMore;
   }
 }

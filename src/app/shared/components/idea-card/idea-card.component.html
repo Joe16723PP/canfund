@@ -22,11 +22,16 @@
         {{ideaDetail.project_name}}
       </div>
       <div class="description-idea">
-        {{ideaDetail.description}}
+        {{ideaDescription}}
+        <span *ngIf="isHaveMoreDescription && !isReadMore" class="read-more-btn" (click)="onClickReadMore()">show more</span>
+        <span class="more" *ngIf="isReadMore">
+          {{readMoreIdeaDes}}
+        </span>
+        <span *ngIf="isReadMore" class="read-more-btn" (click)="onClickReadMore()">show less</span>
       </div>
       <br>
       <div class="owner-idea">
-        by. <span><a href="#" *ngIf="userData.displayName">{{userData.displayName}}</a></span>
+        by. <span *ngIf="userData.displayName" class="display-name">{{userData.displayName}}</span>
       </div>
     </div>
   </mat-card-content>
@@ -66,11 +71,6 @@
       <a mat-raised-button>
         <mat-icon>location_on</mat-icon>
         {{ideaDetail.location}}
-
-        <!--        <div class="location-text" fxLayout="row" fxLayoutAlign="start center">-->
-<!--          <mat-icon>location_on</mat-icon>-->
-<!--          {{ideaDetail.location}}-->
-<!--        </div>-->
       </a>
     </div>
   </mat-card-actions>
