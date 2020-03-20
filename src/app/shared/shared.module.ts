@@ -17,39 +17,42 @@ import {MatBadgeModule} from '@angular/material/badge';
 import { IdeaCardComponent } from './components/idea-card/idea-card.component';
 import {MatCardModule} from '@angular/material/card';
 import {NgCircleProgressModule} from 'ng-circle-progress';
+import { FilterIdeaComponent } from './components/filter-idea/filter-idea.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, IdeaCardComponent],
-    imports: [
-      CommonModule,
-      MatSidenavModule,
-      MatProgressSpinnerModule,
-      FlexLayoutModule,
-      MatToolbarModule,
-      MatIconModule,
-      MatButtonModule,
-      MatMenuModule,
-      MatListModule,
-      RouterModule,
-      MatFormFieldModule,
-      MatInputModule,
-      ReactiveFormsModule,
-      MatBadgeModule,
-      MatCardModule,
-      NgCircleProgressModule.forRoot({
-        radius: 100,
-        outerStrokeWidth: 16,
-        innerStrokeWidth: 8,
-        outerStrokeColor: '#78C000',
-        innerStrokeColor: '#C7E596',
-        animationDuration: 300,
-      })
-    ],
-  exports: [
-    NavbarComponent,
-    IdeaCardComponent
+  declarations: [NavbarComponent, IdeaCardComponent, FilterIdeaComponent, FooterComponent],
+  imports: [
+    CommonModule,
+    MatSidenavModule,
+    MatProgressSpinnerModule,
+    FlexLayoutModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatListModule,
+    RouterModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatBadgeModule,
+    MatCardModule,
+    NgCircleProgressModule.forRoot(),
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatTooltipModule
   ],
+    exports: [
+        NavbarComponent,
+        IdeaCardComponent,
+        FilterIdeaComponent,
+        FooterComponent
+    ],
 })
 
 export class SharedModule { }

@@ -1,0 +1,64 @@
+<div class="filter-container"
+     fxLayout="column"
+     fxLayoutAlign="start center"
+     fxLayoutGap="1rem">
+  <div class="header-filter">Find in CanFund</div>
+  <br>
+  <form [formGroup]="filterFormGroup" fxLayout="column" fxLayoutAlign="center center" (ngSubmit)="onSubmit()">
+    <div class="filter-group" fxLayout="row" fxLayoutGap="1rem">
+      <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="center center">
+        <div class="filter-name">
+          Show me an idea
+        </div>
+        <mat-form-field appearance="fill">
+          <mat-select placeholder="Categories" formControlName="category">
+            <mat-option *ngFor="let type of categoryList" [value]="type.category_id">
+              {{type.category_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="center center">
+        <div class="filter-name">
+          Area you live
+        </div>
+        <mat-form-field appearance="fill">
+          <input matInput type="text"
+                 placeholder="Enter location name"
+                 [matAutocomplete]="auto"
+                 formControlName="location">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let location of filteredLocation | async" [value]="location.location_name">
+              {{location.location_name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutGap="4px" fxLayoutAlign="center center">
+        <div class="filter-name">
+          Sort by
+        </div>
+        <mat-form-field appearance="fill">
+          <mat-select placeholder="by newest ?" formControlName="sortType">
+            <mat-option *ngFor="let srt of sortList" [value]="srt.sort_filter_id">
+              {{srt.sort_filter_name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </div>
+    <p style="color: gray">or</p>
+    <div class="search-name" fxLayout="row" fxLayoutAlign="center center">
+      <mat-form-field appearance="outline" fxFlex="100%">
+        <mat-label>Search by name</mat-label>
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput type="text"
+               placeholder="find in canfund" formControlName="ideaName">
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary">
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+  </form>
+</div>

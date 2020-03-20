@@ -25,19 +25,6 @@ export class AuthService {
   }
 
   public get UserValue(): UserModel {
-    // console.log(this.currentUserSubject.value);
-    // if (this.currentUserSubject.value) {
-    // return {
-    //   displayName: this.currentUserSubject.value.displayName,
-    //   email: this.currentUserSubject.value.email,
-    //   emailVerified: this.currentUserSubject.value.emailVerified,
-    //   uid: this.currentUserSubject.value.uid,
-    //   photoURL: this.currentUserSubject.value.photoURL
-    // };
-    // } else {
-    //   return null;
-    // }
-
     return this.currentUserSubject.value;
   }
 
@@ -49,7 +36,6 @@ export class AuthService {
         .signInWithPopup(provider)
         .then(user => {
           resolve(user);
-          // this.onManageUser(user);
         }, err => {
           console.log(err);
           reject(err);
@@ -115,17 +101,8 @@ export class AuthService {
   onManageUser(user) {
     this.userService.getUserDetailFromDatabase(user.user.uid)
       .subscribe((value) => {
-        // console.log(value.user);
         localStorage.setItem('currentUser', JSON.stringify(value.user));
     });
-    // const localUser: UserModel = {
-    //   displayName: user.user.displayName,
-    //   email: user.user.email,
-    //   emailVerified: user.user.emailVerified,
-    //   photoURL: user.user.photoURL,
-    //   uid: user.user.uid};
-    // localStorage.setItem('currentUser', JSON.stringify(localUser));
-    // return result;
   }
 
   // clear localStorage and subject

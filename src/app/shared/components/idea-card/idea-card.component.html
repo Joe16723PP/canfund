@@ -1,14 +1,17 @@
-<mat-card class="mat-elevation-z4" style="margin: 6px 0">
+<mat-card *ngIf="!isLoading" class="mat-elevation-z2">
   <div class="cover-container">
-    <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" (click)="onClickCard()">
+    <img mat-card-image
+         src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+         alt="cover image"
+         (click)="onClickCard()">
     <div class="btn-action-group" fxLayout="column" fxLayoutGap="6px">
-      <button mat-mini-fab color="primary" class="mat-elevation-z4">
+      <button mat-mini-fab color="primary" class="mat-elevation-z4" matTooltip="Add to my favorite" matTooltipPosition="right">
         <mat-icon>favorite_border</mat-icon>
       </button>
-      <button mat-mini-fab color="primary" class="mat-elevation-z4">
+      <button mat-mini-fab color="primary" class="mat-elevation-z4" matTooltip="Like" matTooltipPosition="right">
         <mat-icon>thumb_up</mat-icon>
       </button>
-      <button mat-mini-fab color="primary" class="mat-elevation-z4">
+      <button mat-mini-fab color="primary" class="mat-elevation-z4" matTooltip="Dislike" matTooltipPosition="right">
         <mat-icon>thumb_down</mat-icon>
       </button>
     </div>
@@ -16,14 +19,14 @@
   <mat-card-content>
     <div fxLayout="column" fxLayoutGap="4px">
       <div class="header-idea">
-        header
+        {{ideaDetail.project_name}}
       </div>
       <div class="description-idea">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In at lacus quis risus vestibulum pellentesque. Praesent id nibh ac sapien condimentum finibus.
+        {{ideaDetail.description}}
       </div>
       <br>
       <div class="owner-idea">
-        by. <span><a href="#">jirot joe</a></span>
+        by. <span><a href="#" *ngIf="userData.displayName">{{userData.displayName}}</a></span>
       </div>
     </div>
   </mat-card-content>
@@ -32,13 +35,13 @@
     <div fxLayout="row" fxFlex="100%" class="progress-detail">
       <div fxLayout="column" fxFlex="50%">
         <div>$20 now</div>
-        <div>$100 need</div>
-        <div>%20 funded</div>
+        <div>${{ideaDetail.funding_target}} need</div>
+        <div>%63 funded</div>
         <div>23 day to go</div>
       </div>
       <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center end">
         <circle-progress
-          [percent]="85"
+          [percent]="63"
           [radius]="40"
           [startFromZero]="false"
           [showSubtitle]="false"
@@ -54,12 +57,29 @@
   </mat-card-content>
   <mat-divider></mat-divider>
   <mat-card-actions>
-    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2rem">
-      <a mat-button>hashtag link</a>
-      <a mat-button>
+    <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2rem">
+      <div fxLayout="row wrap" >
+        <div *ngFor="let tag of ideaDetail.tags">
+          <a mat-button color="primary">#{{tag}}</a>
+        </div>
+      </div>
+      <a mat-raised-button>
         <mat-icon>location_on</mat-icon>
-        project location
+        {{ideaDetail.location}}
+
+        <!--        <div class="location-text" fxLayout="row" fxLayoutAlign="start center">-->
+<!--          <mat-icon>location_on</mat-icon>-->
+<!--          {{ideaDetail.location}}-->
+<!--        </div>-->
       </a>
     </div>
   </mat-card-actions>
 </mat-card>
+
+<div *ngIf="isLoading"
+     fxLayout="row"
+     fxLayoutAlign="center center"
+     style="width: 100px; height: 100px">
+  <mat-spinner [diameter]="30"></mat-spinner>
+</div>
+

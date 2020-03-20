@@ -1,5 +1,5 @@
 mat-card {
-  max-width: 360px;
+  width: 380px;
 }
 
 .header-idea {
@@ -7,8 +7,13 @@ mat-card {
 }
 
 .description-idea {
+  //max-height: 100px;
+  //max-width: 50px;
   font-size: 12px;
   color: gray;
+  //text-overflow: ellipsis;
+  //overflow: hidden;
+  //white-space: nowrap;
 }
 
 .progress-detail {
@@ -41,4 +46,12 @@ button:hover {
 
 .cover-container:hover {
   filter: brightness(90%);
+}
+
+.location-text {
+  text-overflow: "...";
+  width: 100px;
+  //text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }

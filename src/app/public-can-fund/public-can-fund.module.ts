@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PublicCanFundComponent } from './public-can-fund.component';
 import {LoginComponent} from './login/login.component';
-import {HomeComponent} from './home/home.component';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
 import {CoreModule} from '../core/core.module';
@@ -25,6 +24,13 @@ import { TermPrivacyDetailComponent } from './term-privacy-detail/term-privacy-d
 import { ShareIdeaComponent } from './share-idea/share-idea.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
+import {CKEditorModule} from 'ckeditor4-angular';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MockCreateIdeaComponent } from './mock-create-idea/mock-create-idea.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import { IdeaGroupComponent } from './dashboard/idea-group/idea-group.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -32,10 +38,12 @@ import {MatSelectModule} from '@angular/material/select';
   declarations: [
     PublicCanFundComponent,
     LoginComponent,
-    HomeComponent,
     SignUpComponent,
     TermPrivacyDetailComponent,
     ShareIdeaComponent,
+    DashboardComponent,
+    MockCreateIdeaComponent,
+    IdeaGroupComponent,
   ],
     imports: [
         HttpClientModule,
@@ -56,7 +64,11 @@ import {MatSelectModule} from '@angular/material/select';
         ReactiveFormsModule,
         MatIconModule,
         NgxCaptchaModule,
-        MatSelectModule
+        MatSelectModule,
+        CKEditorModule,
+        MatStepperModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule
     ],
   providers: [AuthService]
 })

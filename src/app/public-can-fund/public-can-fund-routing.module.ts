@@ -2,9 +2,10 @@ import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {PublicCanFundComponent} from './public-can-fund.component';
 import {LoginComponent} from './login/login.component';
-import {HomeComponent} from './home/home.component';
 import {SignUpComponent} from './sign-up/sign-up.component';
 import {ShareIdeaComponent} from './share-idea/share-idea.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {MockCreateIdeaComponent} from './mock-create-idea/mock-create-idea.component';
 
 const routes: Routes = [
   {
@@ -13,11 +14,11 @@ const routes: Routes = [
     children: [{
       path: '',
       pathMatch: 'full',
-      redirectTo: 'home'
+      redirectTo: 'dashboard'
     },
       {
-        path: 'home',
-        component: HomeComponent
+        path: 'dashboard',
+        component: DashboardComponent
       },
       {
         path: 'sign-up',
@@ -30,6 +31,10 @@ const routes: Routes = [
       {
         path: 'share',
         component: ShareIdeaComponent
+      },
+      {
+        path: 'mock-add',
+        component: MockCreateIdeaComponent
       }
     ]
   }

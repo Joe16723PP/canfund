@@ -1,0 +1,10 @@
+<div *ngIf="!isLoading">
+  <h3>{{tagData.category_name}}</h3>
+  <div fxLayout="row" fxLayoutGap="4px">
+    <div *ngFor="let idea of ideaList">
+      <app-idea-card [ideaDetail]="idea"></app-idea-card>
+    </div>
+  </div>
+</div>
+
+<mat-spinner *ngIf="isLoading" [diameter]="80" color="warn"></mat-spinner>
