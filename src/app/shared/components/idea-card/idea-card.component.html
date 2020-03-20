@@ -1,19 +1,33 @@
 <mat-card *ngIf="!isLoading" class="mat-elevation-z2">
-  <div class="cover-container">
-    <img mat-card-image
-         src="https://material.angular.io/assets/img/examples/shiba2.jpg"
+  <div class="cover-container" mat-card-image>
+    <img class="cover-img"
+         [src]="imgPath"
          alt="cover image"
          (click)="onClickCard()">
     <div class="btn-action-group" fxLayout="column" fxLayoutGap="6px">
-      <button mat-mini-fab color="primary" class="mat-elevation-z4" matTooltip="Add to my favorite" matTooltipPosition="right">
+      <button mat-mini-fab color="primary"
+              class="mat-elevation-z4 action-btn"
+              matTooltip="Add to my favorite"
+              matTooltipPosition="right"
+              (click)="onClickFavorite()">
         <mat-icon>favorite_border</mat-icon>
       </button>
-      <button mat-mini-fab color="primary" class="mat-elevation-z4" matTooltip="Like" matTooltipPosition="right">
+      <button mat-mini-fab color="primary"
+              class="mat-elevation-z4 action-btn"
+              matTooltip="Like"
+              matTooltipPosition="right"
+              (click)="onClickLikeAndDisLike('like')">
         <mat-icon>thumb_up</mat-icon>
       </button>
-      <button mat-mini-fab color="primary" class="mat-elevation-z4" matTooltip="Dislike" matTooltipPosition="right">
-        <mat-icon>thumb_down</mat-icon>
+    </div>
+    <div class="display-owner" fxLayout="row" fxFlex="100%" fxLayoutAlign="start center">
+      <button mat-raised-button color="primary" (click)="onClickTeamOrUser()">
+        <mat-icon *ngIf="!userData.photoURL">account_circle</mat-icon>
+        <img class="img" *ngIf="userData.photoURL" [src]="userData.photoURL" [alt]="userData.displayName">
+        &nbsp;
+        {{userData.displayName}}
       </button>
+<!--      <button mat-fab color="primary">rating</button>-->
     </div>
   </div>
   <mat-card-content>
@@ -24,14 +38,19 @@
       <div class="description-idea">
         {{ideaDescription}}
         <span *ngIf="isHaveMoreDescription && !isReadMore" class="read-more-btn" (click)="onClickReadMore()">show more</span>
-        <span class="more" *ngIf="isReadMore">
+        <span *ngIf="isReadMore">
           {{readMoreIdeaDes}}
         </span>
         <span *ngIf="isReadMore" class="read-more-btn" (click)="onClickReadMore()">show less</span>
       </div>
       <br>
-      <div class="owner-idea">
-        by. <span *ngIf="userData.displayName" class="display-name">{{userData.displayName}}</span>
+      <div class="owner-idea" fxLayout="row" fxLayoutAlign="start start" fxFlex="100">
+        <div>by. <span *ngIf="userData.displayName" class="display-name">{{userData.displayName}}</span></div>
+        <span fxFlex></span>
+        <div class="display-like" fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="start center">
+          <mat-icon color="warn">thumb_up</mat-icon>
+          <div class="like-counter">{{likeCount}}</div>
+        </div>
       </div>
     </div>
   </mat-card-content>
@@ -39,10 +58,10 @@
   <mat-card-content>
     <div fxLayout="row" fxFlex="100%" class="progress-detail">
       <div fxLayout="column" fxFlex="50%">
-        <div>$20 now</div>
+        <div>$20 now (mock)</div>
         <div>${{ideaDetail.funding_target}} need</div>
-        <div>%63 funded</div>
-        <div>23 day to go</div>
+        <div>%63 funded (mock)</div>
+        <div>23 day to go (mock)</div>
       </div>
       <div fxLayout="column" fxFlex="50%" fxLayoutAlign="center end">
         <circle-progress
@@ -65,10 +84,10 @@
     <div fxLayout="row" fxLayoutAlign="space-between start" fxLayoutGap="2rem">
       <div fxLayout="row wrap" >
         <div *ngFor="let tag of ideaDetail.tags">
-          <a mat-button color="primary">#{{tag}}</a>
+          <a mat-button color="accent">#{{tag}}</a>
         </div>
       </div>
-      <a mat-raised-button>
+      <a mat-button color="accent">
         <mat-icon>location_on</mat-icon>
         {{ideaDetail.location}}
       </a>

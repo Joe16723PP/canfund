@@ -4,12 +4,13 @@ import {environment} from '../../../../environments/environment';
 import {CreateIdeaModel, IdeaDetailModel} from '../../models/idea.model';
 import {Observable} from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
 export class IdeaManagementService {
-  apiUrl = environment.apiUrl;
-  constructor(public http: HttpClient) { }
+  private apiUrl = environment.apiUrl;
+  constructor(private http: HttpClient) { }
 
   onMockCreateNewIdea(ideaData: CreateIdeaModel) {
     const url = this.apiUrl + '/project';
@@ -25,24 +26,20 @@ export class IdeaManagementService {
   onGetAllIdea(): Observable<any> {
     const url = this.apiUrl + '/projects';
     return this.http.get(url);
-    // return new Promise((resolve, reject) => {
-    //   this.http.get(url).subscribe((value: {projects: IdeaDetailModel[]}) => {
-    //     resolve(value.projects);
-    //   }, error => {
-    //     reject(error);
-    //   });
-    // });
   }
 
   onGetIdeaByTag(tagName: string): Observable<any> {
     const url = this.apiUrl + '/projects/tags/' + tagName;
     return this.http.get(url);
-    // return new Observable(subscriber => {
-    //   this.http.get(url).subscribe((value: {projects: IdeaDetailModel[]}) =>  {
-    //     resolve(value.projects);
-    //   }, error => {
-    //     reject(error);
-    //   });
-    // });
+  }
+
+  onUserVoteIdea(ideaId: string, userId: string, option: string): Observable<any> {
+    const url = this.apiUrl + `/project/${ideaId}/like`;
+    const body = {
+      action: option,
+      uid: userId
+    };
+    console.log(body);
+    return this.http.put(url, body);
   }
 }

@@ -4,6 +4,9 @@ import {IdeaDetailModel} from '../../models/idea.model';
 import {UserManagementService} from '../../../core/services/user-management/user-management.service';
 import {UserModel} from '../../models/user.model';
 import {Subscription} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {IdeaManagementService} from '../../services/idea-management/idea-management.service';
+import {MOCK_IMAGE_LIST} from '../../data/const/mock-img.data';
 
 @Component({
   selector: 'app-idea-card',
@@ -20,23 +23,22 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
   readMoreIdeaDes: string;
   isHaveMoreDescription = false;
   isReadMore = false;
+  likeCount = 0;
+  imgList: string[] = MOCK_IMAGE_LIST;
+  imgPath: string;
 
   progressBarPrimaryColor = IDEA_COLOR.successState.primary;
   progressBarSecondaryColor = IDEA_COLOR.successState.accent;
 
-  constructor(private userService: UserManagementService) {
+  constructor(private userService: UserManagementService,
+              public snackBar: MatSnackBar,
+              public ideaService: IdeaManagementService) {
   }
 
   ngOnInit(): void {
-    // console.log(this.txt2.length);
-    if (this.ideaDetail.description.length < 124) {
-      this.ideaDescription = this.ideaDetail.description;
-      this.isHaveMoreDescription = false;
-    } else {
-      this.ideaDescription = this.ideaDetail.description.substr(0, 124);
-      this.readMoreIdeaDes = this.ideaDetail.description.substr(124);
-      this.isHaveMoreDescription = true;
-    }
+    this.manageDescription();
+    this.calcIdeaRate();
+    this.randImg();
     this.ideaSubscription = this.userService.getUserDetailFromDatabase(this.ideaDetail.owner_id).subscribe((value: {user: UserModel}) => {
       this.userData = value.user;
       this.isLoading = false;
@@ -56,5 +58,46 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
 
   onClickReadMore() {
     this.isReadMore = !this.isReadMore;
+  }
+
+  onClickFavorite() {
+    this.snackBar.open(`add ${this.ideaDetail.project_name} to favorite`, 'X', {duration: 1500});
+  }
+
+  onClickLikeAndDisLike(option: string) {
+    const ideaId = this.ideaDetail.project_id;
+    const userId = this.userData.uid;
+    this.ideaService.onUserVoteIdea(ideaId, userId, option).subscribe(value => {
+      console.log(value);
+      this.snackBar.open(`you ${option} this idea`, 'X', {duration: 1500});
+    }, error => {
+      console.log(error);
+    });
+  }
+
+  onClickTeamOrUser() {
+    this.snackBar.open(`click owner idea ${this.userData.displayName}`, 'X', {duration: 1500});
+  }
+
+  private manageDescription() {
+    if (this.ideaDetail.description.length < 124) {
+      this.ideaDescription = this.ideaDetail.description;
+      this.isHaveMoreDescription = false;
+    } else {
+      this.ideaDescription = this.ideaDetail.description.substr(0, 124);
+      this.readMoreIdeaDes = this.ideaDetail.description.substr(124);
+      this.isHaveMoreDescription = true;
+    }
+  }
+
+  private calcIdeaRate() {
+    // console.log(this.ideaDetail.like);
+    const rand = Math.floor(Math.random() * 900);
+    this.likeCount = this.ideaDetail.like.length + rand;
+  }
+
+  private randImg() {
+    const rand = Math.floor(Math.random() * this.imgList.length);
+    this.imgPath = this.imgList[rand];
   }
 }

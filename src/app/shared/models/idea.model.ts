@@ -17,7 +17,7 @@ export interface IdeaDetailModel {
   create_on: any;
   photoURL: string;
   tags: string[];
-  like: any[];
+  like: string[];
   location: string;
   funding_target: number;
   description: string;
