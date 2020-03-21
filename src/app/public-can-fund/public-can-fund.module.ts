@@ -33,6 +33,7 @@ import { IdeaGroupComponent } from './dashboard/idea-group/idea-group.component'
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ForTestComponent } from './for-test/for-test.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatProgressBarModule} from "@angular/material/progress-bar";
 
 
 
@@ -48,32 +49,33 @@ import {MatTabsModule} from '@angular/material/tabs';
     ForTestComponent,
     IdeaGroupComponent
   ],
-  imports: [
-    HttpClientModule,
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    CoreModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    PublicCanFundRoutingModule,
-    AngularFireAuthModule,
-    MatSnackBarModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    NgxCaptchaModule,
-    MatSelectModule,
-    CKEditorModule,
-    MatStepperModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule,
-    MatTabsModule,
-  ],
+    imports: [
+        HttpClientModule,
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        CoreModule,
+        FlexLayoutModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule,
+        PublicCanFundRoutingModule,
+        AngularFireAuthModule,
+        MatSnackBarModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        NgxCaptchaModule,
+        MatSelectModule,
+        CKEditorModule,
+        MatStepperModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule,
+        MatTabsModule,
+        MatProgressBarModule,
+    ],
   providers: [AuthService]
 })
 export class PublicCanFundModule { }
