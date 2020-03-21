@@ -29,10 +29,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MockCreateIdeaComponent } from './mock-create-idea/mock-create-idea.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTooltipModule} from '@angular/material/tooltip';
-import { IdeaGroupComponent } from './dashboard/idea-group/idea-group.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ForTestComponent } from './for-test/for-test.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { CreateIdeaComponent } from './create-idea/create-idea.component';
 
 
 
@@ -46,7 +46,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     DashboardComponent,
     MockCreateIdeaComponent,
     ForTestComponent,
-    IdeaGroupComponent
+    CreateIdeaComponent,
   ],
   imports: [
     HttpClientModule,

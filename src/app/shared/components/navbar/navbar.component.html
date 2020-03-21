@@ -14,8 +14,10 @@
       </button>
       <input type="text" formControlName="keyword" placeholder="Search in CanFund">
     </form>
-    <a routerLink="/mock-add" mat-button>mock add</a>
-    <a routerLink="/for-test" mat-button>for dev test ui</a>
+    <button mat-button [matMenuTriggerFor]="devMenu">
+      for dev
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
     <span fxFlex></span>
     <div *ngIf="!isLoginUser; else login">
       <a mat-button
@@ -75,5 +77,21 @@
   <a mat-menu-item routerLink="/share">
     <mat-icon>add_circle</mat-icon>
     <span>Share new idea</span>
+  </a>
+</mat-menu>
+
+
+<mat-menu #devMenu="matMenu">
+  <a mat-menu-item routerLink="/create">
+    <mat-icon>add_circle</mat-icon>
+    <span>Create</span>
+  </a>
+  <a mat-menu-item routerLink="/mock-add">
+    <mat-icon>add_circle</mat-icon>
+    <span>MockAdd</span>
+  </a>
+  <a mat-menu-item routerLink="/for-test">
+    <mat-icon>add_circle</mat-icon>
+    <span>Test UI</span>
   </a>
 </mat-menu>

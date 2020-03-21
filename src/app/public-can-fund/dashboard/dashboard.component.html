@@ -4,10 +4,6 @@
   <mat-divider></mat-divider>
 
   <div class="container" fxLayout="column" fxLayoutGap="2rem">
-    <div class="found-idea-text">We found {{ideasCounter}} ideas for you!</div>
-    <div *ngFor="let tag of tagList" fxLayout="column" fxLayoutGap="2rem">
-      <app-idea-group [tagData]="tag"></app-idea-group>
-      <mat-divider></mat-divider>
-    </div>
+    <router-outlet></router-outlet>
   </div>
 </div>

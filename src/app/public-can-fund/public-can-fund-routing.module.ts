@@ -7,6 +7,7 @@ import {ShareIdeaComponent} from './share-idea/share-idea.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {MockCreateIdeaComponent} from './mock-create-idea/mock-create-idea.component';
 import {ForTestComponent} from './for-test/for-test.component';
+import {CreateIdeaComponent} from './create-idea/create-idea.component';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
     },
       {
         path: 'dashboard',
-        component: DashboardComponent
+        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+        // component: DashboardComponent
       },
       {
         path: 'sign-up',
@@ -32,6 +34,10 @@ const routes: Routes = [
       {
         path: 'share',
         component: ShareIdeaComponent
+      },
+      {
+        path: 'create',
+        component: CreateIdeaComponent
       },
       {
         path: 'mock-add',
