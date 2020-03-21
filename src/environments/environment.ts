@@ -1,10 +1,11 @@
 // This file can be replaced during build by using the `fileReplacements` array.
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
-
+// http://207.148.65.39:3000/Canefund/v1
+// https://us-central1-canfund-c7a3c.cloudfunctions.net/CaneFund/v1
 export const environment = {
   production: false,
-  apiUrl: 'https://us-central1-canfund-c7a3c.cloudfunctions.net/CaneFund/v1',
+  apiUrl: 'http://207.148.65.39:3000/Canefund/v1',
   firebaseConfig: {
     apiKey: 'AIzaSyCcFlQhozrmYFl59p08_ipO5t6jZYuGgB4',
     authDomain: 'canfund-c7a3c.firebaseapp.com',

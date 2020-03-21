@@ -1,77 +1,170 @@
-<div fxLayout="column"
-     fxLayoutGap="3rem"
-     style="margin: 1rem 0"
->
-  <div class="title-create" fxLayout="column" fxLayoutAlign="center center">
-    <h2>Start with the basics</h2>
-    <p>Make it easy for people to learn about your project.</p>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" fxFlex="100" class="create-container">
-    <div fxLayout="column" fxFlex="50%">
-      <div class="header">Project name</div>
-      <div class="sub-header">Write a clear, brief title that helps people quickly understand the gist of your project.</div>
+<form [formGroup]="createIdeaForm" (ngSubmit)="onSubmit()">
+  <div fxLayout="column"
+       fxLayoutGap="3rem"
+       style="margin: 1rem 0">
+    <div class="title-create" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1rem">
+      <div class="title-create-header">Start with the basics</div>
+      <div class="title-create-sub-header">Make it easy for people to learn about your project.</div>
     </div>
-    <div fxLayout="column" fxFlex="50%">right</div>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" fxFlex="100" class="create-container">
-    <div fxLayout="column" fxFlex="50%">
-      <div class="header">Project category</div>
-      <div class="sub-header">
-        Choose the category that most closely aligns with your project.
-
-        Think of where backers may look to find it. Reach a more specific community by also choosing a subcategory.
-
-        You’ll be able to change the category and subcategory even after your project is live.
+    <mat-divider></mat-divider>
+      <div fxLayout="row" fxFlex="100" class="create-container">
+        <div fxLayout="column" fxFlex="50%" class="sub-container">
+          <div class="header">Project name</div>
+          <div class="sub-header">Write a clear, brief title that helps people quickly understand the gist of your project.</div>
+        </div>
+        <div fxLayout="column" fxFlex="50%" fxLayoutGap="2rem">
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+            <div>title</div>
+            <mat-form-field appearance="outline">
+              <mat-label>Idea name</mat-label>
+              <input matInput type="text" formControlName="project_name">
+            </mat-form-field>
+            <div fxLayout="row" fxFlex="100" fxLayoutAlign="end start">
+              <div style="font-size: 10px; color: gray">{{ideaNameLength}}/60</div>
+            </div>
+          </div>
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+            <div>description</div>
+            <mat-form-field appearance="outline">
+              <mat-label>Idea description</mat-label>
+              <textarea matInput rows="2" formControlName="description"></textarea>
+            </mat-form-field>
+            <div fxLayout="row" fxFlex="100" fxLayoutAlign="end start">
+              <div style="font-size: 10px; color: gray">{{ideaDescriptionLength}}/300</div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div fxLayout="column" fxFlex="50%">right</div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxFlex="100" class="create-container">
+        <div fxLayout="column" fxFlex="50%" class="sub-container">
+          <div class="header">Project category</div>
+          <div class="sub-header">
+            Choose the category that most closely aligns with your project.
+
+            Think of where backers may look to find it. Reach a more specific community by also choosing a subcategory.
+
+            You’ll be able to change the category and subcategory even after your project is live.
+          </div>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+            <div>Select your idea category, It need at least one category</div>
+            <mat-form-field appearance="outline">
+              <mat-label>Category</mat-label>
+              <mat-select placeholder="Categories" (selectionChange)="onAddCategory($event)">
+                <mat-option *ngFor="let type of categoryList" [value]="type.category_id">
+                  {{type.category_name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="createIdeaForm.get('tags').invalid && createIdeaForm.get('tags').touched">
+                Please select at least one category
+              </mat-error>
+            </mat-form-field>
+            <div fxLayout="row" fxLayoutGap="4px">
+              <div *ngFor="let hashTag of Category; let i = index">
+                <button mat-stroked-button
+                        matTooltip="double click to remove"
+                        type="button"
+                        (dblclick)="onDeleteCategory(i)"
+                        color="warn">#{{hashTag.value}}</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxFlex="100" class="create-container">
+        <div fxLayout="column" fxFlex="50%" class="sub-container">
+          <div class="header">Project location</div>
+          <div class="sub-header">Enter the location that best describes where your project is based.</div>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+          <div>Idea launch location</div>
+            <mat-form-field appearance="outline">
+              <input matInput type="text"
+                     placeholder="Typing your idea launch location"
+                     [matAutocomplete]="auto"
+                     formControlName="location">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let location of filteredLocation | async" [value]="location.location_name">
+                  {{location.location_name}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxFlex="100" class="create-container">
+        <div fxLayout="column" fxFlex="50%" class="sub-container">
+          <div class="header">Project image(unavailable now)</div>
+          <div class="sub-header">
+            Add an image that clearly represents your project.
+            Choose one that looks good at different sizes. It will appear in different sizes in different places: on your project page,
+            across the Kickstarter website and mobile apps, and (when shared) on social channels.</div>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+            <div>Cover image (unavailable now)</div>
+            <mat-form-field appearance="outline">
+              <mat-label>upload image</mat-label>
+              <input matInput type="text">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxFlex="100" class="create-container">
+        <div fxLayout="column" fxFlex="50%" class="sub-container">
+          <div class="header">Funding goal</div>
+          <div class="sub-header">Funding is all-or-nothing. If you don’t meet your goal, you won’t receive any money.</div>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+            <div>Funding target</div>
+            <mat-form-field appearance="outline">
+              <mat-label>Funding target</mat-label>
+              <input matInput type="number" formControlName="funding_target">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxFlex="100" class="create-container">
+        <div fxLayout="column" fxFlex="50%" class="sub-container">
+          <div class="header">Launch date(unavailable now)</div>
+          <div class="sub-header">Enter a date when you plan to launch—you can always return to this after you’ve built out more of your Kickstarter project page.</div>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+            <div>Launch date (unavailable now)</div>
+            <mat-form-field appearance="outline">
+              <mat-label>Datepicker</mat-label>
+              <input matInput type="text">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <div fxLayout="row" fxFlex="100" class="create-container">
+        <div fxLayout="column" fxFlex="50%" class="sub-container">
+          <div class="header">Campaign duration (unavailable now)</div>
+          <div class="sub-header">Set a time limit for your campaign. You won’t be able to change this after you launch.</div>
+        </div>
+        <div fxLayout="column" fxFlex="50%">
+          <div fxLayout="column" fxLayoutAlign="start stretch">
+            <div>duration(unavailable now)</div>
+            <mat-form-field appearance="outline">
+              <mat-label>picker or offset of date</mat-label>
+              <input matInput type="text">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div fxLayout="row" fxFlex="100" fxLayoutAlign="end center" class="create-container">
+        <button mat-raised-button color="primary" fxFlex="20" type="submit">Save</button>
+      </div>
   </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" fxFlex="100" class="create-container">
-    <div fxLayout="column" fxFlex="50%">
-      <div class="header">Project location</div>
-      <div class="sub-header">Enter the location that best describes where your project is based.</div>
-    </div>
-    <div fxLayout="column" fxFlex="50%">right</div>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" fxFlex="100" class="create-container">
-    <div fxLayout="column" fxFlex="50%">
-      <div class="header">Project image</div>
-      <div class="sub-header">
-        Add an image that clearly represents your project.
-        Choose one that looks good at different sizes. It will appear in different sizes in different places: on your project page,
-        across the Kickstarter website and mobile apps, and (when shared) on social channels.</div>
-    </div>
-    <div fxLayout="column" fxFlex="50%">right</div>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" fxFlex="100" class="create-container">
-    <div fxLayout="column" fxFlex="50%">
-      <div class="header">Funding goal</div>
-      <div class="sub-header">Funding is all-or-nothing. If you don’t meet your goal, you won’t receive any money.</div>
-    </div>
-    <div fxLayout="column" fxFlex="50%">right</div>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" fxFlex="100" class="create-container">
-    <div fxLayout="column" fxFlex="50%">
-      <div class="header">Launch date</div>
-      <div class="sub-header">Enter a date when you plan to launch—you can always return to this after you’ve built out more of your Kickstarter project page.</div>
-    </div>
-    <div fxLayout="column" fxFlex="50%">right</div>
-  </div>
-  <mat-divider></mat-divider>
-  <div fxLayout="row" fxFlex="100" class="create-container">
-    <div fxLayout="column" fxFlex="50%">
-      <div class="header">Campaign duration</div>
-      <div class="sub-header">Set a time limit for your campaign. You won’t be able to change this after you launch.</div>
-    </div>
-    <div fxLayout="column" fxFlex="50%">right</div>
-  </div>
-  <div fxLayout="row" fxFlex="100" fxLayoutAlign="end center" class="create-container">
-    <button mat-raised-button color="primary" fxFlex="20">Save</button>
-  </div>
-</div>
+</form>

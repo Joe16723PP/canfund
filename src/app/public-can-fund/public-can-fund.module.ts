@@ -34,6 +34,7 @@ import { ForTestComponent } from './for-test/for-test.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { IdeaDetailComponent } from './idea-detail/idea-detail.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 
 
@@ -49,33 +50,34 @@ import { IdeaDetailComponent } from './idea-detail/idea-detail.component';
     ForTestComponent,
     IdeaDetailComponent,
   ],
-    imports: [
-        HttpClientModule,
-        CommonModule,
-        RouterModule,
-        SharedModule,
-        CoreModule,
-        FlexLayoutModule,
-        MatButtonModule,
-        MatDividerModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatCheckboxModule,
-        PublicCanFundRoutingModule,
-        AngularFireAuthModule,
-        MatSnackBarModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        NgxCaptchaModule,
-        MatSelectModule,
-        CKEditorModule,
-        MatStepperModule,
-        MatTooltipModule,
-        MatProgressSpinnerModule,
-        MatTabsModule,
-        MatProgressBarModule,
-    ],
+  imports: [
+    HttpClientModule,
+    CommonModule,
+    RouterModule,
+    SharedModule,
+    CoreModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatDividerModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatCheckboxModule,
+    PublicCanFundRoutingModule,
+    AngularFireAuthModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    NgxCaptchaModule,
+    MatSelectModule,
+    CKEditorModule,
+    MatStepperModule,
+    MatTooltipModule,
+    MatProgressSpinnerModule,
+    MatTabsModule,
+    MatProgressBarModule,
+    MatAutocompleteModule,
+  ],
   providers: [AuthService]
 })
 export class PublicCanFundModule { }

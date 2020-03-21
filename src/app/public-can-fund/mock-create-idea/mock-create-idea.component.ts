@@ -17,7 +17,6 @@ import {IdeaManagementService} from '../../shared/services/idea-management/idea-
 export class MockCreateIdeaComponent implements OnInit {
 
   initProjectForm: FormGroup;
-  secondFormGroup: FormGroup;
   categoryList: CategoryModel[] = CATEGORY_LIST.slice(1);
   userData: UserModel;
 

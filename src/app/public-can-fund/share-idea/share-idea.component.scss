@@ -1,7 +1,27 @@
 .title-create {
-  padding: 1rem 0;
+  padding: 4rem 0;
+  .title-create-header {
+    font-size: 28px;
+    color: #00a4d2;
+  }
+  .title-create-sub-header {
+    font-size: 16px;
+    color: gray;
+  }
 }
 
 .create-container {
   margin: 0 20rem;
+  .sub-container {
+    padding-right: 5rem;
+  }
+}
+
+.header {
+  font-size: 16px;
+}
+
+.sub-header {
+  font-size: 12px;
+  color: gray;
 }

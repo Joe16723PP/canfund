@@ -82,12 +82,12 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
   }
 
   private manageDescription() {
-    if (this.ideaDetail.description.length < 200) {
+    if (this.ideaDetail.description.length < 124) {
       this.ideaDescription = this.ideaDetail.description;
       this.isHaveMoreDescription = false;
     } else {
-      this.ideaDescription = this.ideaDetail.description.substr(0, 200);
-      this.readMoreIdeaDes = this.ideaDetail.description.substr(200);
+      this.ideaDescription = this.ideaDetail.description.substr(0, 124);
+      this.readMoreIdeaDes = this.ideaDetail.description.substr(124);
       this.isHaveMoreDescription = true;
     }
   }
