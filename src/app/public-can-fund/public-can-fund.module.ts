@@ -29,10 +29,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MockCreateIdeaComponent } from './mock-create-idea/mock-create-idea.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { IdeaGroupComponent } from './dashboard/idea-group/idea-group.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { ForTestComponent } from './for-test/for-test.component';
 import {MatTabsModule} from '@angular/material/tabs';
-import { CreateIdeaComponent } from './create-idea/create-idea.component';
 
 
 
@@ -48,32 +48,33 @@ import { CreateIdeaComponent } from './create-idea/create-idea.component';
     ForTestComponent,
     CreateIdeaComponent,
   ],
-  imports: [
-    HttpClientModule,
-    CommonModule,
-    RouterModule,
-    SharedModule,
-    CoreModule,
-    FlexLayoutModule,
-    MatButtonModule,
-    MatDividerModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatCheckboxModule,
-    PublicCanFundRoutingModule,
-    AngularFireAuthModule,
-    MatSnackBarModule,
-    ReactiveFormsModule,
-    MatIconModule,
-    NgxCaptchaModule,
-    MatSelectModule,
-    CKEditorModule,
-    MatStepperModule,
-    MatTooltipModule,
-    MatProgressSpinnerModule,
-    MatTabsModule,
-  ],
+    imports: [
+        HttpClientModule,
+        CommonModule,
+        RouterModule,
+        SharedModule,
+        CoreModule,
+        FlexLayoutModule,
+        MatButtonModule,
+        MatDividerModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatCheckboxModule,
+        PublicCanFundRoutingModule,
+        AngularFireAuthModule,
+        MatSnackBarModule,
+        ReactiveFormsModule,
+        MatIconModule,
+        NgxCaptchaModule,
+        MatSelectModule,
+        CKEditorModule,
+        MatStepperModule,
+        MatTooltipModule,
+        MatProgressSpinnerModule,
+        MatTabsModule,
+        MatProgressBarModule,
+    ],
   providers: [AuthService]
 })
 export class PublicCanFundModule { }
