@@ -74,13 +74,14 @@ mat-card {
     .display-owner {
       visibility: visible;
     }
-    button:hover {
-      transition: 0.3s;
-      transform: scale(1.08);
-    }
   }
 }
 .cover-container:hover {
   filter: brightness(90%);
+}
+
+button:hover {
+  transition: 0.3s;
+  transform: scale(1.08);
 }
 

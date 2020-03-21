@@ -11,6 +11,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./idea-group.component.scss']
 })
 export class IdeaGroupComponent implements OnInit, OnDestroy {
+  // @Input() foundNumber: number;
   @Input() tagData: CategoryModel;
   ideaList: IdeaDetailModel[];
   isLoading = true;
@@ -26,7 +27,6 @@ export class IdeaGroupComponent implements OnInit, OnDestroy {
     this.dataSubscription = this.ideaService.onGetIdeaByTag(tagName).subscribe((value: {projects: IdeaDetailModel[]}) => {
       this.isLoading = false;
       this.ideaList = value.projects;
-      console.log(this.ideaList);
     }, error => {
       this.isLoading = true;
       this.snackBar.open(error.message, 'close', {duration: 3000});

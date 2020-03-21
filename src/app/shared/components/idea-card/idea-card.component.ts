@@ -42,9 +42,11 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
     this.ideaSubscription = this.userService.getUserDetailFromDatabase(this.ideaDetail.owner_id).subscribe((value: {user: UserModel}) => {
       this.userData = value.user;
       this.isLoading = false;
+      this.clearObservable();
     }, error => {
       console.log(error);
       this.isLoading = true;
+      this.clearObservable();
     });
   }
 
@@ -53,7 +55,7 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.ideaSubscription.unsubscribe();
+    this.clearObservable();
   }
 
   onClickReadMore() {
@@ -80,18 +82,17 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
   }
 
   private manageDescription() {
-    if (this.ideaDetail.description.length < 124) {
+    if (this.ideaDetail.description.length < 200) {
       this.ideaDescription = this.ideaDetail.description;
       this.isHaveMoreDescription = false;
     } else {
-      this.ideaDescription = this.ideaDetail.description.substr(0, 124);
-      this.readMoreIdeaDes = this.ideaDetail.description.substr(124);
+      this.ideaDescription = this.ideaDetail.description.substr(0, 200);
+      this.readMoreIdeaDes = this.ideaDetail.description.substr(200);
       this.isHaveMoreDescription = true;
     }
   }
 
   private calcIdeaRate() {
-    // console.log(this.ideaDetail.like);
     const rand = Math.floor(Math.random() * 900);
     this.likeCount = this.ideaDetail.like.length + rand;
   }
@@ -99,5 +100,9 @@ export class IdeaCardComponent implements OnInit, OnDestroy {
   private randImg() {
     const rand = Math.floor(Math.random() * this.imgList.length);
     this.imgPath = this.imgList[rand];
+  }
+
+  private clearObservable() {
+    this.ideaSubscription.unsubscribe();
   }
 }

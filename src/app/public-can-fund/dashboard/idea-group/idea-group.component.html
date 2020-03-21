@@ -1,7 +1,6 @@
 <div *ngIf="!isLoading">
   <h3>{{tagData.category_name}}</h3>
   <div fxLayout="row" fxLayoutGap="8px" class="idea-group">
-<!--    card-1-->
     <div *ngFor="let idea of ideaList">
       <app-idea-card [ideaDetail]="idea"></app-idea-card>
     </div>

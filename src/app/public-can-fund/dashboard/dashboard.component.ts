@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
   tagList = CATEGORY_LIST.slice(1);
   filterChangeSubscription: Subscription;
   allIdea: IdeaDetailModel[];
+  ideasCounter = 0;
+
   constructor(public filterService: FilterService,
               private ideaService: IdeaManagementService,
               public snackBar: MatSnackBar) { }
@@ -29,6 +31,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   private getAllIdea() {
     this.ideaService.onGetAllIdea().subscribe((value: {projects: IdeaDetailModel[]}) => {
       this.allIdea = value.projects;
+      this.ideasCounter = this.allIdea.length;
     }, error => {
       console.log(error);
     });
