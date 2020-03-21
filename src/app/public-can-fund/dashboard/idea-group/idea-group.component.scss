@@ -3,3 +3,25 @@
   width: 1200px;
   overflow-x: auto;
 }
+.idea-group::-webkit-scrollbar {
+  //display: none;
+  height: 4px;
+}
+
+.idea-group::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.idea-group::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+.idea-group::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.idea-group {
+  -ms-overflow-style: none;
+}

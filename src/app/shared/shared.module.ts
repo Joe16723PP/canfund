@@ -22,10 +22,11 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { FooterComponent } from './components/footer/footer.component';
+import { ThreeDotLoadingComponent } from './components/idea-card/three-dot-loading/three-dot-loading.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, IdeaCardComponent, FilterIdeaComponent, FooterComponent],
+  declarations: [NavbarComponent, IdeaCardComponent, FilterIdeaComponent, FooterComponent, ThreeDotLoadingComponent],
   imports: [
     CommonModule,
     MatSidenavModule,

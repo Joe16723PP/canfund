@@ -20,15 +20,15 @@
         <mat-icon>thumb_up</mat-icon>
       </button>
     </div>
-    <div class="display-owner" fxLayout="row" fxFlex="100%" fxLayoutAlign="start center">
-      <button mat-raised-button color="primary" (click)="onClickTeamOrUser()">
-        <mat-icon *ngIf="!userData.photoURL">account_circle</mat-icon>
-        <img class="img" *ngIf="userData.photoURL" [src]="userData.photoURL" [alt]="userData.displayName">
-        &nbsp;
-        {{userData.displayName}}
-      </button>
-<!--      <button mat-fab color="primary">rating</button>-->
-    </div>
+<!--    <div class="display-owner" fxLayout="row" fxFlex="100%" fxLayoutAlign="start center">-->
+<!--      <button mat-raised-button color="primary" (click)="onClickTeamOrUser()">-->
+<!--        <mat-icon *ngIf="!userData.photoURL">account_circle</mat-icon>-->
+<!--        <img class="img" *ngIf="userData.photoURL" [src]="userData.photoURL" [alt]="userData.displayName">-->
+<!--        &nbsp;-->
+<!--        {{userData.displayName}}-->
+<!--      </button>-->
+<!--&lt;!&ndash;      <button mat-fab color="primary">rating</button>&ndash;&gt;-->
+<!--    </div>-->
   </div>
   <mat-card-content>
     <div fxLayout="column" fxLayoutGap="4px">
@@ -98,7 +98,8 @@
 <div *ngIf="isLoading"
      fxLayout="row"
      fxLayoutAlign="center center"
-     style="width: 100px; height: 100px">
-  <mat-spinner [diameter]="30"></mat-spinner>
+     style="width: 380px; height: 300px">
+  <app-three-dot-loading></app-three-dot-loading>
+<!--  <mat-spinner [diameter]="30"></mat-spinner>-->
 </div>
 

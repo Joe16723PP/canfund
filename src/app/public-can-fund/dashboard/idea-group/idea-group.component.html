@@ -1,10 +1,10 @@
 <div *ngIf="!isLoading">
   <h3>{{tagData.category_name}}</h3>
-  <div fxLayout="row" fxLayoutGap="8px" class="idea-group">
+  <div fxLayout="row" fxLayoutGap="16px" class="idea-group">
     <div *ngFor="let idea of ideaList">
       <app-idea-card [ideaDetail]="idea"></app-idea-card>
     </div>
   </div>
 </div>
 
-<mat-spinner *ngIf="isLoading" [diameter]="80" color="warn"></mat-spinner>
+<mat-spinner *ngIf="isLoading" [diameter]="50" color="warn"></mat-spinner>
