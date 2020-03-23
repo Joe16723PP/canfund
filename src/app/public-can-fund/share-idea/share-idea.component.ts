@@ -26,10 +26,15 @@ export class ShareIdeaComponent implements OnInit {
   filteredLocation: Observable<FilterLocationModel[]>;
   ideaNameLength = 0;
   ideaDescriptionLength = 0;
+  isLoginUser = false;
 
   constructor(private authService: AuthService,
               private snackBar: MatSnackBar,
               private ideaService: IdeaManagementService) {
+    if (this.authService.UserValue !== null) {
+      this.userData = this.authService.UserValue;
+      this.isLoginUser = true;
+    }
     this.filteredLocation = this.locationCtrl.valueChanges
       .pipe(
         startWith(''),
@@ -48,14 +53,15 @@ export class ShareIdeaComponent implements OnInit {
       project_name: new FormControl('', [Validators.required]),
       description: new FormControl('', Validators.required),
       photoURL: new FormControl(''),
-      owner_id: new FormControl(),
+      owner_id: new FormControl(''),
       funding_target: new FormControl('', Validators.required),
       location: this.locationCtrl
     });
-    this.userData = this.authService.UserValue;
-    this.createIdeaForm.patchValue({
-      owner_id: this.userData.uid
-    });
+    if (this.isLoginUser) {
+      this.createIdeaForm.patchValue({
+        owner_id: this.userData.uid
+      });
+    }
 
     this.createIdeaForm.valueChanges.subscribe(value => {
       this.onCheckNameLength(value.project_name);
@@ -88,18 +94,24 @@ export class ShareIdeaComponent implements OnInit {
 
   onSubmit() {
     if (this.createIdeaForm.invalid) {
+      if (!this.isLoginUser) {
+        this.snackBar.open('Please login to canfund', 'X' , {duration: 2000});
+      } else {
+        this.snackBar.open('Please fill all required input', 'X', {duration: 2000});
+      }
+      // this.snackBar.open('field i')
       return;
     }
-    // this.ideaService.onCreateNewIdea(this.createIdeaForm.value).then(value => {
-    //   console.log(value);
-    //   this.snackBar.open('Create Mock Idea!', 'close');
-    //   setTimeout(() => {
-    //     window.location.replace('/dashboard');
-    //   }, 1500);
-    // }).catch(reason => {
-    //   console.log(reason);
-    //   this.snackBar.open(`Error ${reason.message}`, 'close', {duration: 3000});
-    // });
+    this.ideaService.onCreateNewIdea(this.createIdeaForm.value).then(value => {
+      console.log(value);
+      this.snackBar.open('Create Mock Idea!', 'close');
+      setTimeout(() => {
+        window.location.replace('/dashboard');
+      }, 1500);
+    }).catch(reason => {
+      console.log(reason);
+      this.snackBar.open(`Error ${reason.message}`, 'close', {duration: 3000});
+    });
     console.log(this.createIdeaForm.value);
   }
 

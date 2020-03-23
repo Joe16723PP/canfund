@@ -12,8 +12,9 @@
 <!--      account_circle-->
 <!--    </mat-icon>-->
     <div *ngIf="link.path === 'profile'">
-      <mat-icon *ngIf="!userData.photoURL">account_circle</mat-icon>
-      <img class="profile-img" *ngIf="userData.photoURL " [src]="userData.photoURL" [alt]="userData.displayName">
+      <mat-icon *ngIf="!userData && !isLoginUser">{{link.icon}}</mat-icon>
+      <mat-icon *ngIf="!userData && isLoginUser">{{link.icon}}</mat-icon>
+      <img class="profile-img" *ngIf="userData" [src]="userData.photoURL" [alt]="userData.displayName">
     </div>
   </a>
 </nav>
