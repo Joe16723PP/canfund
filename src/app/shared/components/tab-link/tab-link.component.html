@@ -1,0 +1,19 @@
+<nav mat-tab-nav-bar fxFlex="100">
+  <a mat-tab-link
+     fxFlex="100"
+     [routerLink]="'/' + link.path"
+     *ngFor="let link of navLinks"
+     routerLinkActive #rla="routerLinkActive"
+     [active]="rla.isActive">
+    <mat-icon *ngIf="link.path !== 'profile'">
+      {{link.icon}}
+    </mat-icon>
+<!--    <mat-icon *ngIf="link.path === 'profile'" fxFlex>-->
+<!--      account_circle-->
+<!--    </mat-icon>-->
+    <div *ngIf="link.path === 'profile'">
+      <mat-icon *ngIf="!userData.photoURL">account_circle</mat-icon>
+      <img class="profile-img" *ngIf="userData.photoURL " [src]="userData.photoURL" [alt]="userData.displayName">
+    </div>
+  </a>
+</nav>

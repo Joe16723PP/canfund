@@ -3,9 +3,16 @@
   min-width: calc(100vw - 63.99px);
 }
 
-.have-bg-img {
-  background-image: url(/assets/images/bgTest.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+//.have-bg-img {
+//  background-image: url(/assets/images/bgTest.jpg);
+//  background-position: center;
+//  background-size: cover;
+//  background-repeat: no-repeat;
+//}
+
+.mat-tab-links {
+  position: absolute;
+  bottom: 0;
+  z-index: 2;
+  //@include mat-elevation(4);
 }

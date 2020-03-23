@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthService} from '../../core/services/authService/auth.service';
+import {AuthService} from '../core/services/authService/auth.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {regex} from '../../shared/data/const/validator';
+import {regex} from '../shared/data/const/validator';
 
 @Component({
   selector: 'app-login',

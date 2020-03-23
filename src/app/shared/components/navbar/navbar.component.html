@@ -1,19 +1,6 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <a mat-button routerLink="/">Icon CanFund</a>
-    <button mat-button>Explore</button>
-    <a mat-button routerLink="/share">Share Idea!</a>
-    <form [formGroup]="searchGroup"
-          (ngSubmit)="onSearch()"
-          class="custom-search"
-          fxFlex="20%"
-          fxLayout="row"
-          fxLayoutAlign="start center">
-      <button mat-icon-button type="submit">
-        <mat-icon>search</mat-icon>
-      </button>
-      <input type="text" formControlName="keyword" placeholder="Search in CanFund">
-    </form>
     <button mat-button [matMenuTriggerFor]="devMenu">
       for dev
       <mat-icon>arrow_drop_down</mat-icon>
@@ -28,16 +15,14 @@
 <!--      <a mat-button routerLink="/sign-up">Sign up</a>-->
     </div>
     <ng-template #login>
-      <button mat-stroked-button [matMenuTriggerFor]="userMenu">
+      <button mat-icon-button>
+        <mat-icon matBadge="3" matBadgeSize="small" matBadgeColor="primary" matBadgePosition="above before">notifications</mat-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="userMenu">
         <mat-icon *ngIf="!userData.photoURL">account_circle</mat-icon>
         <img id="profile-img" *ngIf="userData.photoURL" [src]="userData.photoURL" [alt]="userData.displayName">
-        &nbsp;
-        {{userData.displayName}}
       </button>
     </ng-template>
-    <button mat-icon-button matTooltip="Help!">
-      <mat-icon>help</mat-icon>
-    </button>
   </mat-toolbar-row>
 </mat-toolbar>
 

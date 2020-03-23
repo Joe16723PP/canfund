@@ -1,0 +1,20 @@
+@import "~@angular/material/theming";
+
+nav {
+  position: fixed;
+  //min-width: calc(100% - 14px);
+  width: 100%;
+  bottom: 0;
+  z-index: 2;
+  background-color: white;
+  @include mat-elevation(3);
+}
+
+.profile-img {
+  //margin: 6px;
+  border-radius: 50%;
+  max-width: 25px;
+  filter: brightness(90%);
+  @include mat-elevation(3);
+}
+

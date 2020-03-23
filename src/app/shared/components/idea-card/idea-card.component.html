@@ -1,4 +1,4 @@
-<mat-card *ngIf="!isLoading" class="mat-elevation-z2">
+<mat-card *ngIf="!isLoading">
   <div class="cover-container" mat-card-image>
     <img class="cover-img"
          [src]="imgPath"
@@ -98,7 +98,7 @@
 <div *ngIf="isLoading"
      fxLayout="row"
      fxLayoutAlign="center center"
-     style="width: 380px; height: 300px">
+     style="height: 300px">
   <app-three-dot-loading></app-three-dot-loading>
 <!--  <mat-spinner [diameter]="30"></mat-spinner>-->
 </div>

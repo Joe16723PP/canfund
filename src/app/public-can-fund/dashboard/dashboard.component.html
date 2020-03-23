@@ -1,9 +1,14 @@
-<div fxLayout="column">
-  <app-filter-idea></app-filter-idea>
-
+<div fxLayout="column" fxLayoutGap="1rem" style="margin: 1rem;">
+<!--  <div *ngFor="let tag of tagList" fxLayout="column" fxLayoutGap="2rem">-->
+<!--    <app-idea-group [tagData]="tag"></app-idea-group>-->
+<!--    <mat-divider></mat-divider>-->
+<!--  </div>-->
+  <div class="top-trend" fxLayout="column" fxLayoutAlign="center center">
+    <h3>trends for you</h3>
+    <div>[icon list or something]</div>
+  </div>
   <mat-divider></mat-divider>
-
-  <div class="container" fxLayout="column" fxLayoutGap="2rem">
-    <router-outlet></router-outlet>
+  <div *ngFor="let idea of allIdea">
+    <app-idea-card [ideaDetail]="idea"></app-idea-card>
   </div>
 </div>

@@ -1,0 +1,57 @@
+<div class="login-container">
+  <div class="login-header" fxLayout="row" fxLayoutAlign="center center">
+    Icon CanFund
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="1rem" style="font-size: 12px">
+    <div class="action-group"
+         fxLayout="column"
+         fxLayoutGap="6px"
+         fxFlex="100%"
+         fxLayoutAlign="center center">
+      <button mat-raised-button class="custom-facebook">Continue with Facebook?</button>
+      <button mat-raised-button class="custom-gmail" (click)="onGmailLogin()">Sign in with Gmail</button>
+    </div>
+    <form [formGroup]="loginGroup" (ngSubmit)="onSubmit()">
+      <div fxLayout="column" fxLayoutAlign="center stretch" style="font-size: 12px" fxLayoutGap="1px">
+        <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
+          <h5>or</h5>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your email</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput type="email" placeholder="Email" formControlName="email">
+          <mat-error *ngIf="loginGroup.get('email').invalid && loginGroup.get('email').touched">
+            Email is invalid!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Password must at least 8 characters">
+          <button mat-icon-button (click)="hide = !hide" matSuffix color="accent">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="loginGroup.get('password').invalid && loginGroup.get('password').touched">
+            Please enter password and must be at least 8 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginGroup.invalid">Login</button>
+      <div fxLayout="row" fxLayoutAlign="end center">
+        <a href="#">Forgot your password?</a>
+      </div>
+    </form>
+  </div>
+  <br>
+  <mat-divider></mat-divider>
+  <div class="sign-up-route" fxLayout="row" fxLayoutAlign="center center">
+    <div>New to CanFund? <span><a routerLink="/sign-up">Sign up</a></span></div>
+  </div>
+  <mat-divider></mat-divider>
+  <div>
+    <app-term-privacy-detail></app-term-privacy-detail>
+  </div>
+</div>
+
+
+

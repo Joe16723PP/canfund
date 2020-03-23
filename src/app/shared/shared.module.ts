@@ -23,10 +23,23 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { FooterComponent } from './components/footer/footer.component';
 import { ThreeDotLoadingComponent } from './components/idea-card/three-dot-loading/three-dot-loading.component';
+import {IdeaGroupComponent} from './components/idea-group/idea-group.component';
+import { TabLinkComponent } from './components/tab-link/tab-link.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {TermPrivacyDetailComponent} from './components/term-privacy-detail/term-privacy-detail.component';
 
 
 @NgModule({
-  declarations: [NavbarComponent, IdeaCardComponent, FilterIdeaComponent, FooterComponent, ThreeDotLoadingComponent],
+  declarations: [
+    NavbarComponent,
+    IdeaCardComponent,
+    FilterIdeaComponent,
+    FooterComponent,
+    ThreeDotLoadingComponent,
+    IdeaGroupComponent,
+    TabLinkComponent,
+    TermPrivacyDetailComponent
+  ],
   imports: [
     CommonModule,
     MatSidenavModule,
@@ -46,14 +59,18 @@ import { ThreeDotLoadingComponent } from './components/idea-card/three-dot-loadi
     NgCircleProgressModule.forRoot(),
     MatSelectModule,
     MatAutocompleteModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatTabsModule
   ],
-    exports: [
-        NavbarComponent,
-        IdeaCardComponent,
-        FilterIdeaComponent,
-        FooterComponent
-    ],
+  exports: [
+    IdeaGroupComponent,
+    NavbarComponent,
+    IdeaCardComponent,
+    FilterIdeaComponent,
+    FooterComponent,
+    TabLinkComponent,
+    TermPrivacyDetailComponent
+  ],
 })
 
 export class SharedModule { }

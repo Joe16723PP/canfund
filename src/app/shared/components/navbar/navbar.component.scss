@@ -11,7 +11,9 @@
   top: 0;
   z-index: 2;
   @include mat-elevation(4);
-  opacity: 1;
+  .mat-toolbar-row {
+    padding: 0;
+  }
 }
 
 .custom-toolbar {
@@ -54,6 +56,6 @@
 #profile-img {
   margin: 6px;
   border-radius: 50%;
-  max-width: 30px;
+  max-width: 20px;
   @include mat-elevation(3);
 }

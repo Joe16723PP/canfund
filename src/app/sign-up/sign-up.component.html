@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a mat-icon-button routerLink="/login" fxFlex="10%">
+      <mat-icon>skip_previous</mat-icon>
+    </a>
+    <span fxFlex></span>
+    <div style="font-size: 14px">Sign up to CanFund</div>
+    <span fxFlex></span>
+    <span fxFlex="10%"></span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<div fxLayout="column" class="sign-up-container" fxLayoutGap="1rem">
+  <div fxLayout="row" fxLayoutAlign="center center" fxFlex="100" class="sign-up-header">
+    canfund icon
+  </div>
+  <div fxLayout="column" fxLayoutAlign="center stretch" fxLayoutGap="4px" style="font-size: 12px">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
+      <div fxLayout="column" fxLayoutAlign="center stretch" style="font-size: 12px">
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your email</mat-label>
+          <mat-icon matPrefix>email</mat-icon>
+          <input matInput type="text" placeholder="Email" formControlName="email">
+          <mat-error *ngIf="signUpForm.get('email').invalid && signUpForm.get('email').touched">
+            Email is invalid!
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <mat-icon matPrefix>lock</mat-icon>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+          <button mat-icon-button (click)="hide = !hide" matSuffix color="accent">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="signUpForm.get('password').invalid && signUpForm.get('password').touched">
+            Please enter password and must be at least 8 characters
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your display name</mat-label>
+          <mat-icon matPrefix>person</mat-icon>
+          <input matInput type="text" placeholder="your display name" formControlName="displayName">
+          <mat-error *ngIf="signUpForm.get('displayName').invalid && signUpForm.get('displayName').touched">
+            Please enter display name and must be at least 6 characters
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="start center">
+        <ngx-recaptcha2 formControlName="reCaptcha"
+                        type="image"
+                        [siteKey]="siteKey"
+                        useGlobalDomain="false"
+                        size="normal">
+        </ngx-recaptcha2>
+      </div>
+      <br>
+      <button id="sign-up-btn" mat-raised-button color="primary" [disabled]="signUpForm.invalid">Sign up</button>
+    </form>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <app-term-privacy-detail></app-term-privacy-detail>
+  </mat-card-actions>
+</div>
+

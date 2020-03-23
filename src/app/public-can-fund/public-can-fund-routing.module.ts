@@ -1,12 +1,13 @@
 import {RouterModule, Routes} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {PublicCanFundComponent} from './public-can-fund.component';
-import {LoginComponent} from './login/login.component';
-import {SignUpComponent} from './sign-up/sign-up.component';
 import {ShareIdeaComponent} from './share-idea/share-idea.component';
 import {MockCreateIdeaComponent} from './mock-create-idea/mock-create-idea.component';
 import {ForTestComponent} from './for-test/for-test.component';
 import {IdeaDetailComponent} from './idea-detail/idea-detail.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {SearchComponent} from './search/search.component';
+import {UserMessageComponent} from './user-message/user-message.component';
 
 const routes: Routes = [
   {
@@ -19,19 +20,19 @@ const routes: Routes = [
     },
       {
         path: 'dashboard',
-        loadChildren: () => import('./dashboard/dashboard.module').then(m => m.DashboardModule)
+        component: DashboardComponent
       },
       {
-        path: 'sign-up',
-        component: SignUpComponent
-      },
-      {
-        path: 'login',
-        component: LoginComponent
+        path: 'search',
+        component: SearchComponent
       },
       {
         path: 'share',
         component: ShareIdeaComponent
+      },
+      {
+        path: 'message',
+        component: UserMessageComponent
       },
       {
         path: 'mock-add',

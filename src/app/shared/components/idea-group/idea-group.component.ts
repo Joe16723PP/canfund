@@ -1,7 +1,7 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {CategoryModel} from '../../../shared/models/category.model';
-import {IdeaManagementService} from '../../../shared/services/idea-management/idea-management.service';
-import {IdeaDetailModel} from '../../../shared/models/idea.model';
+import {CategoryModel} from '../../models/category.model';
+import {IdeaManagementService} from '../../services/idea-management/idea-management.service';
+import {IdeaDetailModel} from '../../models/idea.model';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Subscription} from 'rxjs';
 

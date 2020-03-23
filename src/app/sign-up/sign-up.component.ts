@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {environment} from '../../../environments/environment';
+import {environment} from '../../environments/environment';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {AuthService} from '../../core/services/authService/auth.service';
-import {regex} from '../../shared/data/const/validator';
+import {AuthService} from '../core/services/authService/auth.service';
+import {regex} from '../shared/data/const/validator';
 import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({

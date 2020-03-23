@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PublicCanFundComponent } from './public-can-fund.component';
-import {LoginComponent} from './login/login.component';
+import {LoginComponent} from '../login/login.component';
 import {RouterModule} from '@angular/router';
 import {SharedModule} from '../shared/shared.module';
 import {CoreModule} from '../core/core.module';
@@ -18,9 +18,8 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
-import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignUpComponent } from '../sign-up/sign-up.component';
 import {NgxCaptchaModule} from 'ngx-captcha';
-import { TermPrivacyDetailComponent } from './term-privacy-detail/term-privacy-detail.component';
 import { ShareIdeaComponent } from './share-idea/share-idea.component';
 import {HttpClientModule} from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
@@ -35,6 +34,9 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { IdeaDetailComponent } from './idea-detail/idea-detail.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { SearchComponent } from './search/search.component';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import { UserMessageComponent } from './user-message/user-message.component';
 
 
 
@@ -43,12 +45,13 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     PublicCanFundComponent,
     LoginComponent,
     SignUpComponent,
-    TermPrivacyDetailComponent,
     ShareIdeaComponent,
     DashboardComponent,
     MockCreateIdeaComponent,
     ForTestComponent,
     IdeaDetailComponent,
+    SearchComponent,
+    UserMessageComponent,
   ],
   imports: [
     HttpClientModule,
@@ -77,6 +80,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     MatTabsModule,
     MatProgressBarModule,
     MatAutocompleteModule,
+    MatToolbarModule,
   ],
   providers: [AuthService]
 })
