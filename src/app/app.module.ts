@@ -19,6 +19,11 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {PublicCanFundModule} from './public-can-fund/public-can-fund.module';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {JwtModule} from '@auth0/angular-jwt';
+
+export function getToken() {
+  return localStorage.getItem('access_token');
+}
 
 @NgModule({
   declarations: [
@@ -30,6 +35,13 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
       FlexLayoutModule,
       HttpClientModule,
       BrowserAnimationsModule,
+      JwtModule.forRoot({
+        config: {
+          tokenGetter: getToken,
+          whitelistedDomains: [environment.apiUrl],
+          // blacklistedRoutes: ['example.com/examplebadroute/']
+        }
+      }),
       MatToolbarModule,
       SharedModule,
       CoreModule,
